@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">IdCardUploadApp</string>
-    <string name="id_card_registry_front_text">이곳을 클릭하여 신분증을 업로드 해주세요. (앞면)</string>
-    <string name="id_card_registry_back_text">이곳을 클릭하여 신분증을 업로드 해주세요. (뒷면)</string>
-</resources>
