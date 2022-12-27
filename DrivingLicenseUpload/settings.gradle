@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "IdCardUploadApp"
+rootProject.name = "DrivingLicenseUpload"
 include ':app'

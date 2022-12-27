@@ -1,10 +1,322 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="list_nor">#00FFFFFF</color>
+    <color name="list_sel">#FF00BDFC</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="black_80a">#CC000000</color>
+    <color name="black_90a">#E6000000</color>
+    <color name="loading_background_000000_ffffff">#E6000000</color>
+    <color name="loading_background">#80000000</color>
+    <color name="dialog_background">#80000000</color>
+    <color name="cpw_dialog_background">#D9000000</color>
+    <color name="red">#d02129</color>
+    <color name="blue">#1189ff</color>
+    <color name="blue_dark">#ff187998</color>
+    <color name="green">#ff1ce322</color>
+    <color name="color_dialog_layout_background">#b3000000</color>
+    <color name="color_ble_toast_layout_background">#4a000000</color>
+    <color name="color_dialog_line">#f0f0f0</color>
+    <color name="color_888888">#888888</color>
+    <color name="color_c70026">#c70026</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_ebebeb">#ebebeb</color>
+    <color name="color_f7a162">#f7a162</color>
+    <color name="color_f5f5f5">#f5f5f5</color>
+
+    <!--공통 백그라운드색-->
+    <color name="background_top">#1a1d27</color>
+    <color name="background_center">#29334d</color>
+    <color name="background_bottom">#141419</color>
+    <color name="background_subpage">#15171c</color>
+    <color name="background_body">#15171c</color>
+    <color name="background_leftmenu">#23262c</color>
+    <color name="background_leftmenu_line">#2b2e35</color>
+    <!--23262c-->
+    <color name="background_leftmenu_userinfo">#191b21</color>
+    <!--191b21-->
+
+    <color name="line_under_title">#08aee8</color>
+    <color name="textcolor_subtitle1">#c8cacd</color>
+    <color name="textcolor_subtitle2">#08aee8</color>
+    <color name="textcolor_subtitle3">#08aee8</color>
+    <color name="textcolor_subtitle4">#39beed</color>
+    <color name="buttontext_ffffff_default">#ffffff</color>
+    <color name="buttontext_ffffff_press">#ffffff</color>
+    <color name="buttontext_ffffff_disable">#4dffffff</color>
+    <color name="hintcolor_19ffffff_999999">#19ffffff</color>
+
+
+    <color name="buttonstroke_content_a">#999999</color>
+    <color name="buttonstroke_content_a_disable">#4d999999</color>
+    <color name="buttonsolid_content_a">#08aee8</color>
+
+    <color name="buttonstroke_content_b">#08aee8</color>
+    <color name="buttonstroke_content_b_disable">#4d08aee8</color>
+    <color name="buttonsolid_content_b">#08aee8</color>
+
+    <color name="buttonstroke_content_c">#08aee8</color>
+    <color name="buttonsolid_content_c">#08aee8</color>
+
+    <color name="buttontext_content_a_default">#ffffff</color>
+    <color name="buttontext_content_a_press">#ffffff</color>
+    <color name="buttontext_content_a_disable">#4dffffff</color>
+
+    <color name="buttontext_content_b_default">#08aee8</color>
+    <color name="buttontext_content_b_press">#ffffff</color>
+    <color name="buttontext_content_b_disable">#4d08aee8</color>
+
+    <color name="buttontext_content_c_default">#08aee8</color>
+    <color name="buttontext_content_c_press">#ffffff</color>
+
+    <color name="btn_bottom_background_A_default">#08aee8</color>
+    <color name="btn_bottom_background_A_press">#198ada</color>
+    <color name="btn_bottom_background_B_default">#15171c</color>
+    <color name="btn_bottom_background_B_press">#1e2026</color>
+
+    <color name="commonedittext_edit_enable">@color/color_ffffff</color>
+    <color name="commonedittext_edit_disable">#1affffff</color>
+    <color name="commonedittext_text_enable">@color/color_ffffff</color>
+    <color name="commonedittext_text_disable">#1affffff</color>
+    <color name="commonedittext_underline_enable">#08aee8</color>
+    <color name="commonedittext_underline_disable">#056688</color>
+
+    <!--버추얼 키보드-->
+    <color name="virtual_keyboard_line_top">#0c0f15</color>
+    <color name="virtual_keyboard_button_divider">#13151b</color>
+    <color name="virtual_keyboard_button_background_normal">#1b1f27</color>
+    <color name="virtual_keyboard_button_background_press">#31353f</color>
+
+    <color name="color_text_normal">@color/color_c8cacd</color>
+    <color name="color_text_disable">#1affffff</color>
+
+    <!-- 블루링크_유보 색상 -->
+    <color name="color_text_ffffff_222222">@color/color_ffffff</color>
+    <color name="color_line_ffffff_e6e6e6">@color/color_ffffff</color>
+    <color name="color_text_8bd7ff_bbf0be">#8bd7ff</color>
+    <color name="color_text_999999_666666">@color/color_999999</color>
+    <color name="color_text_1affffff_999999">#1affffff</color>
+    <color name="color_cursor_ffffff_000000">#ffffff</color>
+    <color name="color_text_c8cacd_222222">#c8cacd</color>
+    <color name="color_text_c8cacd_666666">#c8cacd</color>
+    <color name="color_text_6a6d75_666666">#6a6d75</color>
+    <color name="color_btn_transparent_ffffff">@color/transparent</color>
+    <color name="color_btn_transparenttouch_ffffff">@color/transpaent_touch</color>
+    <color name="color_text_ffffff_333333">@color/color_ffffff</color>
+    <color name="color_line_ffffff_cccccc">@color/color_ffffff</color>
+    <color name="color_line_08aee8_e52b4e">@color/color_08aee8</color>
+    <color name="color_text_757e92_7c7c7c">#757e92</color>
+    <color name="color_text_999999_ffffff">@color/color_999999</color>
+    <color name="color_text_fb015c_e52b4e">@color/color_fb015c</color>
+    <color name="color_btn_warning_pressed_ab0d47_b20727">@color/color_ab0d47</color>
+    <color name="color_btn_warning_normal_13151b_e52b4e">@color/color_13151b</color>
+    <color name="color_line_101216_fbfbfb">@color/color_101216</color>
+    <color name="color_background_1e2129_transparent">@color/color_1e2129</color>
+    <color name="color_line_101216_d4d4d4">@color/color_101216</color>
+    <color name="color_background_1e2129_ffffff">@color/color_1e2129</color>
+    <color name="color_text_08aee8_3387e5">@color/color_08aee8</color>
+    <color name="color_text_47494e_666666">@color/color_47494e</color>
+    <color name="color_text_09f7bc_04b980">@color/color_09f7bc</color>
+    <color name="color_gradation_up_e515171c_transparent">#e515171c</color>
+    <color name="color_stroke_08aee8_363a49">@color/color_08aee8</color>
+    <color name="color_outline_1affffff_e6e6e6">#1affffff</color>
+    <color name="color_outline_3f4145_e6e6e6">#3f4145</color>
+    <color name="color_outline_ffffff_cccccc">#ffffff</color>
+    <color name="color_text_ffffff_666666">@color/color_ffffff</color>
+    <color name="color_text_a4a7ae_999999">#a4a7ae</color>
+    <color name="color_background_1e2129_fbfbfb">@color/color_1e2129</color>
+    <color name="color_line_101216_e6e6e6">@color/color_101216</color>
+    <color name="color_666666_999999">@color/color_666666</color>
+    <color name="color_circle_3a3e49_efefef">@color/color_3a3e49</color>
+    <color name="color_03fff6_3caba7">@color/color_03fff6</color>
+    <color name="color_line_1affffff_e6e6e6">#1affffff</color>
+    <color name="color_text_ffffff_999999">#ffffff</color>
+    <color name="color_background_2e3138_efefef">@color/color_2e3138</color>
+    <color name="color_text_03fff6_e6274d">@color/color_03fff6</color>
+    <color name="color_line_2e2d32_bfbebe">#2e2d32</color>
+    <color name="color_background_2e2d32_f5f5f5">#2e2d32</color>
+    <color name="color_text_42b0e8_515151">#42b0e8</color>
+
+    <color name="color_3a3e49">#3a3e49</color>
+    <color name="color_222222">#222222</color>
+    <color name="color_101216">#101216</color>
+    <color name="color_ffffff">#ffffff</color>
+    <color name="color_ffffff_20a">#33ffffff</color>
+    <color name="color_999999">#999999</color>
+    <color name="color_c8cacd">#c8cacd</color>
+    <color name="color_08aee8">#08aee8</color>
+    <color name="color_03fff6">#03fff6</color>
+    <color name="color_757e92">#757e92</color>
+    <color name="color_e1e1e2">#e1e1e2</color>
+    <color name="color_fb015c">#fb015c</color>
+    <color name="color_03e8ff">#03e8ff</color>
+    <color name="color_47494d">#47494d</color>
+    <color name="color_393a3e">#393a3e</color>
+    <color name="color_3f4145">#3f4145</color>
+    <color name="color_09f7bc">#09f7bc</color>
+    <color name="color_47494e">#47494e</color>
+    <color name="color_e2e5ec">#e2e5ec</color>
+    <color name="color_4876c7">#4876c7</color>
+    <color name="color_13151b">#13151b</color>
+    <color name="color_ab0d47">#ab0d47</color>
+    <color name="color_444549">#444549</color>
+    <color name="color_252832">#252832</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_14151a">#14151a</color>
+    <color name="color_55585e">#55585e</color>
+    <color name="color_6a6d75">#6a6d75</color>
+    <color name="color_1e2129">#1e2129</color>
+    <color name="color_2e3138">#2e3138</color>
+    <color name="color_disable">#404249</color>
+    <color name="color_4e91fd">#4e91fd</color>
+    <color name="color_cdcfd5">#cdcfd5</color>
+    <color name="color_4d8df7">#4d8df7</color>
+
+
+    <color name="transpaent_touch">#99000000</color>
+
+    <color name="bg_vehicle_image">#3a3e49</color>
+
+    <color name="text_main_bottom_button_default">#a3a5ab</color>
+    <color name="text_main_bottom_button_press">#5c5d64</color>
+
+    <color name="text_main_gradient_start">#e8e9eb</color>
+    <color name="text_main_gradient_end">#83878e</color>
+
+    <color name="text_instruction_selected">#03fff6</color>
+    <color name="text_instruction_normal">#4876c7</color>
+    <color name="text_ev_instruction_selected">#ffffff</color>
+    <color name="text_ev_instruction_normal">#a9b481</color>
+    <!--Select Vehicle Item box-->
+    <color name="background_select_vehicle_item_1">#08aee8</color>
+    <color name="background_select_vehicle_item_2">#34ffffff</color>
+
+    <!--Find My Car Map View-->
+    <color name="background_mapview">#15171c</color>
+    <color name="background_mapview_alpha">#d915171c</color>
+
+    <!--QRCode Scan-->
+    <color name="background_qrcode_topbar">#2715171c</color>
+    <color name="background_qrcode_body">#b315171c</color>
+
+    <!--Common Dialog-->
+    <color name="background_common_dialog">#191b21</color>
+    <color name="buttontext_common_dialog_left_press">#999999</color>
+    <color name="buttontext_common_dialog_left_normal">#ffffff</color>
+
+    <color name="buttontext_common_dialog_right_press">#198ada</color>
+    <color name="buttontext_common_dialog_right_normal">#08aee8</color>
+
+    <color name="color_on_08aee8_3387e5">#08aee8</color>
+    <color name="color_off_999999_666666">#999999</color>
+
+    <color name="buttonText_VehicleStatus_On">#08aee8</color>
+    <color name="buttonText_VehicleStatus_Off">#999999</color>
+    <color name="buttonText_VehicleStatus_Warn">#fb015c</color>
+
+    <color name="buttonText_VehicleStatus_SunRoof_On">#08aee8</color>
+    <color name="buttonText_VehicleStatus_SunRoof_Off">#cccccc</color>
+
+    <color name="buttonText_Week_Sunday">#a21e4e</color>
+    <color name="buttonText_Week_Saturday">#218fb6</color>
+    <color name="buttonText_Week_Weekday">#999999</color>
+    <color name="buttonText_Week_Selected">#08aee8</color>
+
+    <!--Status Bar Color-->
+    <color name="statusbar_color">#141419</color>
+
+    <!--Driving History Chart Color-->
+    <color name="color_379cf6">#379cf6</color>
+    <color name="color_24d3ac">#24d3ac</color>
+    <color name="color_6f5de8">#6f5de8</color>
+    <color name="color_ed4964">#ed4964</color>
+
+    <color name="color8f8e94">#8f8e94</color>
+    <color name="color7bd3ff">#7bd3ff</color>
+
+    <!--Popup Menu Color-->
+    <color name="popup_background">#252832</color>
+    <color name="color_10ffffff_e6e6e6">#10ffffff</color>
+    <color name="popup_borders">#08aee8</color>
+    <color name="popup_text">#ffffff</color>
+    <color name="popup_shadows">#4a000000</color>
+    <!--Swipe Layout Color-->
+    <color name="black_p50">#7f000000</color>
+
+    <!-- Remote Control Color-->
+    <color name="color_remote_control_title">#ffffff</color>
+    <color name="color_remote_control_sub_title">#4d8df7</color>
+    <color name="color_remote_control_dot">#08aee8</color>
+    <color name="color_remote_control_dot_nor">#323a48</color>
+    <color name="color_remote_control_sub_background">#15171c</color>
+    <color name="color_remote_control_main_line">#33ffffff</color>
+    <color name="color_remote_control_sub_line">#323a48</color>
+
+    <!--YIWOO common -->
+    <color name="color_d11420">#d11420</color>
+    <color name="color_00fcff">#00fcff</color>
+    <color name="color_on_08aee8_e73b5b">#08aee8</color>
+    <color name="color_line_1Affffff_e6e6e6">#1Affffff</color>
+    <color name="color_line_33ffffff_e6e6e6">#33ffffff</color>
+    <color name="color_text_999999_363a49">#999999</color>
+    <color name="color_text_ffffff_363a49">#ffffff</color>
+    <color name="color_text_08aee8_222222">#08aee8</color>
+    <color name="color_text_08aee8_363a49">#08aee8</color>
+    <color name="color_e2e5ec_999999">#e2e5ec</color>
+    <color name="color_000000_dddddd">#000000</color>
+    <color name="color_4a4f5a_dddddd">#4a4f5a</color>
+    <color name="color_15171c_efefef">#15171c</color>
+    <color name="color_ffffff_fbfbfb">#ffffff</color>
+    <color name="color_191b21_ffffff">#191b21</color>
+    <color name="color_999999_222222">#999999</color>
+    <color name="color_17191f_f5f5f5">#17191f</color>
+    <color name="color_252832_ffffff">#252832</color>
+    <color name="color_line_08aee8_transparent">#08aee8</color>
+    <color name="color_3a3e49_dddddd">#3a3e49</color>
+    <color name="color_line_33ffffff_cccccc">#cccccc</color>
+    <color name="color_text_ffffff_15171c">#ffffff</color>
+    <color name="color_line_1affffff_999999">#1affffff</color>
+    <color name="color_08aee8_e52b42">#08aee8</color>
+    <color name="color_15171c_ffffff">#15171c</color>
+    <color name="color_1e2026_e6e6e6">#1e2026</color>
+    <color name="color_08aee8_999999">#08aee8</color>
+    <color name="color_666666_e52b42">#666666</color>
+    <color name="color_line_1affffff_cccccc">#1affffff</color>
+    <color name="color_ffffff_00653d">#ffffff</color>
+    <color name="color_a9b481_60c14e">#a9b481</color>
+    <color name="color_52906c_dddddd">#52906c</color>
+    <color name="color_a7d1b9_41ab58">#a7d1b9</color>
+    <color name="color_4e91fd_363a49">#4e91fd</color>
+    <color name="color_9bd9ff_beeab6">#9bd9ff</color>
+    <color name="color_b5dbf0_bbf0be">#b5dbf0</color>
+    <color name="color_08aee8_363a49">#08aee8</color>
+    <color name="color_198ada_23252f">#198ada</color>
+    <color name="color_ffffff_46faeb">#ffffff</color>
+    <color name="color_60687d_f5f5f5">#60687d</color>
+    <color name="color_3360687d_f5f5f5">#3360687d</color>
+    <color name="color_08aee8_e52b4e">#08aee8</color>
+    <color name="color_ffffff_363a49">#ffffff</color>
+    <color name="color_4c4c4c_cccccc">#4c4c4c</color>
+    <color name="color_fb025c">#fb025c</color>
+    <color name="color_line_08aee8_cccccc">#08aee8</color>
+    <color name="color_898a8c_666666">#898a8c</color>
+    <color name="color_3d3f43">#3d3f43</color>
+    <color name="color_4cffffff">#4cffffff</color>
+    <color name="color_222222_ffffff">#222222</color>
+    <color name="push_popup_content">#222222</color>
+
+    <color name="color_fine_dust_mono">#00e4ff</color>
+    <color name="color_fine_dust_blue">#25bfff</color>
+    <color name="color_fine_dust_green">#15fe99</color>
+    <color name="color_fine_dust_orange">#ff8135</color>
+
+    <color name="color_fine_dust_brown">#A36B4F</color>
+    <color name="color_fine_dust_black">#000000</color>
+    <color name="color_fine_dust_white">#ffffff</color>
+    <color name="color_fine_dust_yellow">#ffff00</color>
+    <color name="color_fine_dust_gray">#808080</color>
+    <color name="color_popup_title">#cdcdcd</color>
+    <color name="color_popup_checkbox">#999999</color>
+    <color name="color_popup_content">#ffffff</color>
 </resources>

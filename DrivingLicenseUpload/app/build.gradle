@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace 'com.example.idcarduploadapp'
+    namespace 'com.example.drivinglicenseupload'
     compileSdk 32
 
     defaultConfig {

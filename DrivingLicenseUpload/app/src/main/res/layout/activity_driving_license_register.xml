@@ -43,7 +43,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:text="@string/Driving_License_registry_front_text" />
+                android:text="@string/driving_license_registry_front_text" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -86,7 +86,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:text="@string/Driving_License_registry_back_text" />
+                android:text="@string/driving_license_registry_back_text" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
