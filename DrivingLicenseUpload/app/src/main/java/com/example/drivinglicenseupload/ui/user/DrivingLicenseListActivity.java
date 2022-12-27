@@ -12,9 +12,7 @@ import com.example.drivinglicenseupload.widget.ContentButton;
 
 public class DrivingLicenseListActivity extends AppCompatActivity {
 
-    public AppCompatActivity mContext;
     public ContentButton mDrivingLicenseAddButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,4 +29,6 @@ public class DrivingLicenseListActivity extends AppCompatActivity {
         });
 
     }
+
+
 }

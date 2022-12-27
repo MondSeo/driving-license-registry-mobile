@@ -35,7 +35,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:button_style="B"
-        android:text="@string/driving_license_registry_text"
-        android:textAllCaps="false" />
+        android:text="@string/DrivingLicenseRegisterActivity_ListAdd_Text"
+        android:textAllCaps="false"
+        android:textColor="@color/black"/>
 
 </RelativeLayout>
