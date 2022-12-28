@@ -6,16 +6,19 @@ import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.drivinglicenseupload.R;
+import com.example.drivinglicenseupload.ui.BaseActivity_CommonGNB;
 import com.example.drivinglicenseupload.ui.custom.CustomDialog;
 import com.example.drivinglicenseupload.util.Util;
 
-public class DrivingLicenseRegisterActivity extends AppCompatActivity {
+public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
 
     public static final int PERMISSION_CHECK_CAMERA_ID = 10000;
@@ -29,7 +32,6 @@ public class DrivingLicenseRegisterActivity extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
 
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
@@ -51,14 +53,8 @@ public class DrivingLicenseRegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving_license_register);
-        RelativeLayout mDrivingLicenseRegisterFrontButton = findViewById(R.id.rel_Registry_Driving_License_Front);
-        RelativeLayout mDrivingLicenseRegisterBackButton = findViewById(R.id.rel_Registry_Driving_License_Back);
-
-        mDrivingLicenseRegisterFrontButton.setOnClickListener(clickListener);
-        mDrivingLicenseRegisterBackButton.setOnClickListener(clickListener);
-
+        initLayout();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -81,6 +77,7 @@ public class DrivingLicenseRegisterActivity extends AppCompatActivity {
                     switch (v.getId())
                     {
                         case R.id.btn_driving_license_snap_shot:
+
                         case R.id.btn_driving_license_find_gallery:
                             break;
                     }
@@ -89,10 +86,26 @@ public class DrivingLicenseRegisterActivity extends AppCompatActivity {
         },getString(R.string.Common_Close),null,false);
     }
 
+    private void initLayout(){
+        setTitleText(getString(R.string.DrivingLicenseCertificate_Text));
+        RelativeLayout rel_DrivingLicenseRegisterActivity_FrontImageAdd = findViewById(R.id.rel_Registry_Driving_License_Front);
+        RelativeLayout rel_DrivingLicenseRegisterActivity_BackImageAdd = findViewById(R.id.rel_Registry_Driving_License_Back);
+//        RecyclerView mDrivingLicenseListRecyclerView = findViewById(R.id.driving_License_Register_RecyclerView);
+
+        rel_DrivingLicenseRegisterActivity_FrontImageAdd.setOnClickListener(clickListener);
+        rel_DrivingLicenseRegisterActivity_BackImageAdd.setOnClickListener(clickListener);
+
+    }
+
     private String contentText(boolean isFront){
         if(isFront){
             return getString(R.string.DrivingLicenseCustomDialog_ContentButton_Front_Text);
         }
         return getString(R.string.DrivingLicenseCustomDialog_ContentButton_Back_Text);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

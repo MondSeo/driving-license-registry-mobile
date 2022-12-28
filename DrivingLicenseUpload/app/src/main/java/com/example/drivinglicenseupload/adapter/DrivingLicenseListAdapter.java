@@ -26,7 +26,6 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter {
         public DrivingLicenseListViewHolder(@NonNull View itemView) {
             super(itemView);
 
-
             uploadedDrivingLicenseFrontImage = itemView.findViewById(R.id.uploaded_Driving_License_front_image);
             uploadedDrivingLicenseBackImage = itemView.findViewById(R.id.uploaded_Driving_License_back_image);
 

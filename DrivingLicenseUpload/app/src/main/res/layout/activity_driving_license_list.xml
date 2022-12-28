@@ -6,32 +6,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.user.DrivingLicenseRegisterActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:gravity="center">
 
-        <ImageView
-            android:id="@+id/img_back"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/ic_baseline_arrow_back_24" />
+    <RelativeLayout
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:id="@+id/rel_DrivingLicenseListActivity_EmptyList"
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/drawable_circle_edge"
+        android:orientation="vertical">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/img_DrivingLicenseListActivity_Add_ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_add_24" />
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:visibility="gone"
         android:id="@+id/driving_License_Register_RecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btn_back">
+        android:layout_height="wrap_content">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.example.drivinglicenseupload.widget.ContentButton
+        android:visibility="gone"
         android:layout_below="@+id/driving_License_Register_RecyclerView"
-        android:id="@+id/btn_driving_license_Add"
+        android:id="@+id/btn_DrivingLicenseListActivity_ListAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:button_style="B"

@@ -16,4 +16,5 @@
     <string name="driver_license_popup_checkbox">7일 동안 보지 않기</string>
     <string name="DrivingLicenseCustomDialog_ContentButton_Front_Text">앞면 사진을 추가해주세요.</string>
     <string name="DrivingLicenseCustomDialog_ContentButton_Back_Text">뒷면 사진을 추가해주세요.</string>
+    <string name="DrivingLicenseCertificate_Text">운전면허증</string>
 </resources>

@@ -4,11 +4,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="30dp"
-    android:layout_marginTop="30dp"
-    android:layout_marginEnd="30dp">
+   >
+
+
 
     <RelativeLayout
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:id="@+id/rel_Registry_Driving_License_Front"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +51,8 @@
     </RelativeLayout>
 
     <RelativeLayout
-
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:id="@+id/rel_Registry_Driving_License_Back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
