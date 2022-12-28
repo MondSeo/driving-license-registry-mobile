@@ -3,7 +3,10 @@ package com.example.drivinglicenseupload.ui.user;
 import static androidx.constraintlayout.widget.ConstraintLayoutStates.TAG;
 
 import android.Manifest;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,34 +14,25 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.drivinglicenseupload.R;
+import com.example.drivinglicenseupload.constant.AppConfig;
 import com.example.drivinglicenseupload.ui.BaseActivity_CommonGNB;
 import com.example.drivinglicenseupload.ui.custom.CustomDialog;
 import com.example.drivinglicenseupload.util.Util;
 
 public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
-
-    public static final int PERMISSION_CHECK_CAMERA_ID = 10000;
-    public static final int PERMISSION_CHECK_EXTERNAL_STORAGE_ID = 10001;
-
-    public static final String[] CHECK_CAMERA_PERMISSIONS = {
-            Manifest.permission.CAMERA
-    };
-
-    public static final String[] CHECK_EXTERNAL_STORAGE_PERMISSIONS = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
-
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.rel_Registry_Driving_License_Front:
+
                     popupDrivingLicenseSelect(true);
+
                     break;
                 case R.id.rel_Registry_Driving_License_Back:
                     popupDrivingLicenseSelect(false);

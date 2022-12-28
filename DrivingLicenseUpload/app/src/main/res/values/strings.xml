@@ -4,6 +4,9 @@
     <string name="DrivingLicenseRegisterActivity_BackContentButton_Text">이곳을 클릭하여 운전면허증을 업로드 해주세요. (뒷면)</string>
     <string name="DrivingLicenseRegisterActivity_ListAdd_Text">+ 추가</string>
     <string name="Common_Close">닫기</string>
+    <string name="Common_Cancel">취소</string>
+
+    <string name="permissions_deny_mandatory">%s를 이용하시려면 필수권한을 허용해야 합니다.\n아래 설정 버튼을 눌러 권한을 허용해주세요.\n\n필수권한 : %s</string>
 
     <string name="DrivingLicenseRegisterActivity_TakePhoto">사진 촬영</string>
     <string name="DrivingLicenseRegisterActivity_Gallery">앨범에서 사진 선택</string>

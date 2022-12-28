@@ -28,5 +28,15 @@ public class Util {
         return (int) (dp * Resources.getSystem().getDisplayMetrics().density);
     }
 
+    public static CustomDialog selectDialog(Context context, String contentText, String leftText, String rightText, View.OnClickListener leftOnClickListener, View.OnClickListener rightOnClickListener) {
+        CustomDialog dialog = new CustomDialog(context, contentText, leftText, rightText, leftOnClickListener, rightOnClickListener);
+        try {
+            dialog.setCancelable(true);
+            dialog.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dialog;
+    }
 
 }
