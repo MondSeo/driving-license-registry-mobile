@@ -143,7 +143,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 //    }
 
     private void popupDrivingLicenseSelect(Boolean isFront) {
-        tempDirectoryStr = DrivingLicenseRegisterActivity.this.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
+        tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
         File path = new File(tempDirectoryStr);
         deleteTempFile(path);
         Util.customViewDialog(this, getString(R.string.DrivingLicenseCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_drivinglicense_select, new CustomDialog.OnCustomInitialize() {
@@ -161,14 +161,15 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                     switch (v.getId())
                     {
                         case R.id.btn_driving_license_take_photo:
-                            if(PermissionUtil.isStoragePermissionDeny(mContext)) {
-                                if(!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.STORAGE_PERMISSION)
-                                        || (!PermissionUtil.isHuaweiDevice() && PermissionUtil.isStorageFirstAskPermission(DrivingLicenseRegisterActivity.this))) {
-                                    ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_EXTERNAL_STORAGE_PERMISSIONS, PERMISSION_CHECK_EXTERNAL_STORAGE_ID);
+                            if(ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                                if(!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
+                                        || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(DrivingLicenseRegisterActivity.this, Manifest.permission.CAMERA))) {
+                                    ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_CAMERA_PERMISSIONS, PERMISSION_CHECK_CAMERA_ID);
+
                                 } else {
-                                    String permissions = getString(R.string.permission_storage);
-                                    Util.selectDialog(DrivingLicenseRegisterActivity.this,
-                                            String.format(getString(R.string.permissions_deny_mandatory), AppConfig.getAppName(), permissions),
+                                    String permissions = getString(R.string.permission_camera);
+                                    Util.selectDialog(mContext,
+                                            String.format(getString(R.string.permissions_deny_optional), AppConfig.getAppName(), permissions),
                                             getString(R.string.Common_Cancel), getString(R.string.set),
                                             null,
                                             new View.OnClickListener() {
@@ -232,7 +233,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
     private String createPicturePath(Context context) {
         String newImgPath = null;
-        capturedImageFileName = UserID + "_profile.jpg";
+        capturedImageFileName = UserID + "_DLicense.jpg";
         try {
             FileOutputStream fos = context.openFileOutput(capturedImageFileName, Context.MODE_PRIVATE);
             fos.close();
