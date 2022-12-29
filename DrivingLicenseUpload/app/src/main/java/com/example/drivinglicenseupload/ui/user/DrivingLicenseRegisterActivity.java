@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -65,16 +66,40 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
-                case R.id.rel_Registry_Driving_License_Front:
-                    popupDrivingLicenseSelect(true);
-                    break;
+            if(PermissionUtil.isStoragePermissionDeny(mContext)) {
+                if(!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.STORAGE_PERMISSION)
+                        || (!PermissionUtil.isHuaweiDevice() && PermissionUtil.isStorageFirstAskPermission(DrivingLicenseRegisterActivity.this))) {
+                    ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_EXTERNAL_STORAGE_PERMISSIONS, PERMISSION_CHECK_EXTERNAL_STORAGE_ID);
+                } else {
+                    String permissions = getString(R.string.permission_storage);
+                    Util.selectDialog(DrivingLicenseRegisterActivity.this,
+                            String.format(getString(R.string.permissions_deny_mandatory), AppConfig.getAppName(), permissions),
+                            getString(R.string.Common_Cancel), getString(R.string.set),
+                            null,
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                    intent.setData(uri);
+                                    startActivity(intent);
+                                }
+                            });
+                }
+            } else{
+                switch (v.getId()){
+                    case R.id.rel_Registry_Driving_License_Front:
+                        popupDrivingLicenseSelect(true);
+                        break;
 
-                case R.id.rel_Registry_Driving_License_Back:
-                    popupDrivingLicenseSelect(false);
-                    break;
+                    case R.id.rel_Registry_Driving_License_Back:
+                        popupDrivingLicenseSelect(false);
+                        break;
+                }
+                Log.d(TAG,"popupDrivingLicenseSelect");
             }
-            Log.d(TAG,"popupDrivingLicenseSelect");
+
         }
     };
 
@@ -141,6 +166,17 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 //            }
 //        }
 //    }
+//
+//    private void getImageFromLocal() {
+//        String profileImage = DBUtils.getProfileImage(mContext);
+//        if (profileImage == null) {
+//            Bitmap userImageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ble_user_default);
+//            setUserProfileImage(userImageBitmap);
+//        } else {
+//            userProfilePhoto = Util.getBitmapFromByteArray(Util.base64Decode(profileImage));
+//            setUserProfileImage(userProfilePhoto);
+//        }
+//    }
 
     private void popupDrivingLicenseSelect(Boolean isFront) {
         tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
@@ -161,42 +197,16 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                     switch (v.getId())
                     {
                         case R.id.btn_driving_license_take_photo:
-                            if(ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                                if(!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
-                                        || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(DrivingLicenseRegisterActivity.this, Manifest.permission.CAMERA))) {
-                                    ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_CAMERA_PERMISSIONS, PERMISSION_CHECK_CAMERA_ID);
-
-                                } else {
-                                    String permissions = getString(R.string.permission_camera);
-                                    Util.selectDialog(mContext,
-                                            String.format(getString(R.string.permissions_deny_optional), AppConfig.getAppName(), permissions),
-                                            getString(R.string.Common_Cancel), getString(R.string.set),
-                                            null,
-                                            new View.OnClickListener() {
-                                                @Override
-                                                public void onClick(View view) {
-                                                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                    Uri uri = Uri.fromParts("package", getPackageName(), null);
-                                                    intent.setData(uri);
-                                                    startActivity(intent);
-                                                }
-                                            });
-                                }
-                            } else {
-                                Intent intent = getTakePictureIntent();
-                                startActivityForResult(intent, REQUEST_CODE_CAMERA);
-                            }
+                            openCamera();
                             break;
                         case R.id.btn_driving_license_find_gallery:
-
+                            openGallery();
                             break;
                     }
                 }
             };
         },getString(R.string.Common_Close),null,false);
     }
-
 
     private boolean deleteTempFile(File path) {
         if (!path.isDirectory()) {
@@ -230,6 +240,43 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         return intent;
     }
+
+    private void openCamera() {
+        if(ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if(!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
+                    || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(DrivingLicenseRegisterActivity.this, Manifest.permission.CAMERA))) {
+                ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_CAMERA_PERMISSIONS, PERMISSION_CHECK_CAMERA_ID);
+
+            } else {
+                String permissions = getString(R.string.permission_camera);
+                Util.selectDialog(mContext,
+                        String.format(getString(R.string.permissions_deny_optional), AppConfig.getAppName(), permissions),
+                        getString(R.string.Common_Cancel), getString(R.string.set),
+                        null,
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Uri uri = Uri.fromParts("package", getPackageName(), null);
+                                intent.setData(uri);
+                                startActivity(intent);
+                            }
+                        });
+            }
+        } else {
+            Intent intent = getTakePictureIntent();
+            startActivityForResult(intent, REQUEST_CODE_CAMERA);
+        }
+    }
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_CODE_GALLERY);
+    }
+
 
     private String createPicturePath(Context context) {
         String newImgPath = null;
