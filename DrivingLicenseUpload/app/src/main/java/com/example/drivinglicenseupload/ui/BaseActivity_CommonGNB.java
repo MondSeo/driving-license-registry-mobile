@@ -1,5 +1,6 @@
 package com.example.drivinglicenseupload.ui;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -59,12 +60,26 @@ public abstract class BaseActivity_CommonGNB extends AppCompatActivity {
     private LinearLayout btn_change_setting;
     private TextView txt_backup_memo_info;
 
+    public static final int PERMISSION_CHECK_CAMERA_ID = 0x01;
+    public static final int PERMISSION_CHECK_EXTERNAL_STORAGE_ID = 0x02;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_common_gnb);
+        mContext = this;
         initBaseLayout();
+
     }
+
+    public static final String[] CHECK_CAMERA_PERMISSIONS = {
+            Manifest.permission.CAMERA
+    };
+
+    public static final String[] CHECK_EXTERNAL_STORAGE_PERMISSIONS = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
 
     public void setContentView(int layoutResource)
     {

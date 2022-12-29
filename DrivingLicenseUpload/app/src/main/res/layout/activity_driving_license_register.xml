@@ -22,9 +22,11 @@
             android:id="@+id/uploaded_Driving_License_front_image"
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:scaleType="fitCenter"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+
             android:background="@drawable/drawable_circle_edge"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/lin_Registry_Driving_License_Front"
@@ -34,6 +36,7 @@
 
 
             <ImageView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

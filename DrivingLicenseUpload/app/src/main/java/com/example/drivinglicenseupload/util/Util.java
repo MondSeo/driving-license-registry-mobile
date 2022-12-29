@@ -2,9 +2,13 @@ package com.example.drivinglicenseupload.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.util.Base64;
 import android.view.View;
 
 import com.example.drivinglicenseupload.ui.custom.CustomDialog;
+
+import java.io.ByteArrayOutputStream;
 
 public class Util {
 
@@ -37,6 +41,23 @@ public class Util {
             e.printStackTrace();
         }
         return dialog;
+    }
+
+    public static byte[] bitmapToByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
+    }
+
+    public static byte[] base64Decode(String source)
+    {
+        return android.util.Base64.decode(source, Base64.DEFAULT);
+    }
+
+    public static String base64Encode(byte[] data)
+    {
+        return android.util.Base64.encodeToString(data,Base64.DEFAULT);
     }
 
 }

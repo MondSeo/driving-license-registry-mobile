@@ -14,7 +14,7 @@
         />
 
     <com.example.drivinglicenseupload.widget.ContentButton
-        android:id="@+id/btn_driving_license_snap_shot"
+        android:id="@+id/btn_driving_license_take_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:button_style="B"
