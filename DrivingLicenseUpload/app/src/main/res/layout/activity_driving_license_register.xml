@@ -6,35 +6,28 @@
     android:layout_height="wrap_content"
    >
 
-
-
     <RelativeLayout
         android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="30dp"
-        android:id="@+id/rel_Registry_Driving_License_Front"
+        android:id="@+id/rel_DrivingLicenseRegisterActivity_Front"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/drawable_circle_edge"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/uploaded_Driving_License_front_image"
+            android:id="@+id/img_DrivingLicenseRegisterActivity_UploadedImage_Front"
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_launcher_background"
-
-            android:background="@drawable/drawable_circle_edge"
-            android:visibility="visible" />
+            android:scaleType="fitStart"
+            android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/lin_Registry_Driving_License_Front"
+            android:id="@+id/lin_DrivingLicenseRegisterActivity_Front"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
             <ImageView
 
                 android:layout_width="wrap_content"
@@ -56,16 +49,16 @@
     <RelativeLayout
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:id="@+id/rel_Registry_Driving_License_Back"
+        android:id="@+id/rel_DrivingLicenseRegisterActivity_Back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rel_Registry_Driving_License_Front"
+        android:layout_below="@+id/rel_DrivingLicenseRegisterActivity_Front"
         android:layout_marginTop="10dp"
         android:background="@drawable/drawable_circle_edge"
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/uploaded_Driving_License_back_image"
+            android:id="@+id/img_DrivingLicenseRegisterActivity_UploadedImage_Back"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:scaleType="fitCenter"
@@ -74,13 +67,12 @@
             android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/lin_Registry_Driving_License_Back"
+            android:id="@+id/lin_DrivingLicenseRegisterActivity_Back"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/Driving_License_registry_"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

@@ -17,6 +17,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -89,13 +90,14 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                 }
             } else{
                 switch (v.getId()){
-                    case R.id.rel_Registry_Driving_License_Front:
+                    case R.id.rel_DrivingLicenseRegisterActivity_Front:
                         popupDrivingLicenseSelect(true);
                         break;
 
-                    case R.id.rel_Registry_Driving_License_Back:
+                    case R.id.rel_DrivingLicenseRegisterActivity_Back:
                         popupDrivingLicenseSelect(false);
                         break;
+
                 }
                 Log.d(TAG,"popupDrivingLicenseSelect");
             }
@@ -146,10 +148,11 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
     private void initLayout(){
         setTitleText(getString(R.string.DrivingLicenseCertificate_Text));
-        RelativeLayout rel_DrivingLicenseRegisterActivity_FrontImageAdd = findViewById(R.id.rel_Registry_Driving_License_Front);
-        RelativeLayout rel_DrivingLicenseRegisterActivity_BackImageAdd = findViewById(R.id.rel_Registry_Driving_License_Back);
+        RelativeLayout rel_DrivingLicenseRegisterActivity_FrontImageAdd = findViewById(R.id.rel_DrivingLicenseRegisterActivity_Front);
+        RelativeLayout rel_DrivingLicenseRegisterActivity_BackImageAdd = findViewById(R.id.rel_DrivingLicenseRegisterActivity_Back);
 //        RecyclerView mDrivingLicenseListRecyclerView = findViewById(R.id.driving_License_Register_RecyclerView);
-
+        ImageView uploaded_Driving_License_front_image = findViewById(R.id.img_DrivingLicenseRegisterActivity_UploadedImage_Front);
+        uploaded_Driving_License_front_image.setClipToOutline(true);
         rel_DrivingLicenseRegisterActivity_FrontImageAdd.setOnClickListener(clickListener);
         rel_DrivingLicenseRegisterActivity_BackImageAdd.setOnClickListener(clickListener);
 
@@ -276,7 +279,6 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, REQUEST_CODE_GALLERY);
     }
-
 
     private String createPicturePath(Context context) {
         String newImgPath = null;
