@@ -93,5 +93,21 @@ public class Util {
     {
         return android.util.Base64.encodeToString(data,Base64.DEFAULT);
     }
-
+    public static boolean isValidContextForGlide(final Context context) {
+        if (context == null) {
+            return false;
+        }
+        if (context instanceof Activity) {
+            final Activity activity = (Activity) context;
+            if (activity.isDestroyed() || activity.isFinishing()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public static boolean isImageSyncIgnore() {
+        // true : 이미지싱크 안함
+        // false : 이미지싱크 함
+        return true;
+    }
 }

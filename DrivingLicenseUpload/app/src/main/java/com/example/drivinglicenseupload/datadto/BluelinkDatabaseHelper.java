@@ -85,8 +85,9 @@ public class BluelinkDatabaseHelper extends SQLiteOpenHelper {
     private String getDrivingLicenseImageCreateQuery(){
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE IF NOT EXISTS " + TABLE_DRIVING_LICENSE_IMAGE);
-        sb.append(" '" + BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_FRONT + "' TEXT DEFAULT NULL,");
-        sb.append(" '" + BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_BACK + "' TEXT DEFAULT NULL");
+        sb.append( " ('userId' TEXT PRIMARY KEY ,");
+        sb.append(" ('" + BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_FRONT + "' TEXT DEFAULT NULL,");
+        sb.append(" '" + BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_BACK + "' TEXT DEFAULT NULL)");
         return sb.toString();
     }
 

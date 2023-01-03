@@ -6,6 +6,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -27,6 +28,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.drivinglicenseupload.R;
 import com.example.drivinglicenseupload.constant.AppConfig;
 import com.example.drivinglicenseupload.constant.PrefKeys;
@@ -47,6 +50,9 @@ import java.util.logging.Logger;
 public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
     Bitmap drivingLicenseImage = null;
+    ImageView img_DrivingLicenseRegisterActivity_UploadedImage_Front;
+    ImageView img_DrivingLicenseRegisterActivity_UploadedImage_Back;
+
     private final int TAKE_PICTURE = 1;
     private final int SELECT_PICTURE = 2;
     private final int TAKE_PHOTO = 3;
@@ -54,6 +60,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
     String capturedImageFileName;
     String capturedImagePath;
+    String selectedImagePath;
     String tempDirectoryStr;
 
     private String UserID;
@@ -67,8 +74,8 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
     private View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(PermissionUtil.isStoragePermissionDeny(mContext)) {
-                if(!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.STORAGE_PERMISSION)
+            if (PermissionUtil.isStoragePermissionDeny(mContext)) {
+                if (!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.STORAGE_PERMISSION)
                         || (!PermissionUtil.isHuaweiDevice() && PermissionUtil.isStorageFirstAskPermission(DrivingLicenseRegisterActivity.this))) {
                     ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_EXTERNAL_STORAGE_PERMISSIONS, PERMISSION_CHECK_EXTERNAL_STORAGE_ID);
                 } else {
@@ -88,8 +95,8 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                                 }
                             });
                 }
-            } else{
-                switch (v.getId()){
+            } else {
+                switch (v.getId()) {
                     case R.id.rel_DrivingLicenseRegisterActivity_Front:
                         popupDrivingLicenseSelect(true);
                         break;
@@ -99,7 +106,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                         break;
 
                 }
-                Log.d(TAG,"popupDrivingLicenseSelect");
+                Log.d(TAG, "popupDrivingLicenseSelect");
             }
 
         }
@@ -120,10 +127,9 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        boolean isFront = data.getBooleanExtra("isFront",true);
         switch (requestCode) {
             case REQUEST_CODE_CAMERA:
-                boolean isFront = false;
                 if (resultCode == RESULT_OK || resultCode == RESULT_CANCELED) {
                     String captureUri = capturedImagePath + capturedImageFileName;
                     String manufacture = android.os.Build.MANUFACTURER;
@@ -132,6 +138,8 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                         return;
                     }
                     Bitmap bitmap = PictureUtils.getSampleSizeBitmap(captureUri, 4);
+
+                    setDrivingLicenseImage(drivingLicenseImage, isFront);
                     if (bitmap != null) {
                         if (drivingLicenseImage != null) {
                             drivingLicenseImage.recycle();
@@ -139,22 +147,38 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                         }
                         drivingLicenseImage = bitmap;
                         drivingLicenseImage = PictureUtils.rotate(drivingLicenseImage, PictureUtils.exifOrientationToDegrees(captureUri));
-                        isFront = data.getBooleanExtra("isFront",true);
                         saveLicenseImageToLocal(isFront);
                     }
 //                    PictureUtils.deleteBitmapFile(mContext, capturedImageFileName);
                 }
                 break;
+            case REQUEST_CODE_GALLERY:
+                if (resultCode == RESULT_OK) {
+                    Uri selectedImageUri = data.getData();
+                    selectedImagePath = getPath(selectedImageUri);
+                    if (drivingLicenseImage != null) {
+                        drivingLicenseImage.recycle();
+                        drivingLicenseImage = null;
+                    }
+                    drivingLicenseImage = PictureUtils.getSampleSizeBitmap(selectedImagePath, 4);
+                    drivingLicenseImage = PictureUtils.rotate(drivingLicenseImage, PictureUtils.exifOrientationToDegrees(selectedImagePath));
+                    if (drivingLicenseImage != null) {
+                        setDrivingLicenseImage(drivingLicenseImage, isFront);
+                        saveLicenseImageToLocal(isFront);
+                    }
+                }
+                break;
         }
     }
 
-    private void initLayout(){
+    private void initLayout() {
         setTitleText(getString(R.string.DrivingLicenseCertificate_Text));
         RelativeLayout rel_DrivingLicenseRegisterActivity_FrontImageAdd = findViewById(R.id.rel_DrivingLicenseRegisterActivity_Front);
         RelativeLayout rel_DrivingLicenseRegisterActivity_BackImageAdd = findViewById(R.id.rel_DrivingLicenseRegisterActivity_Back);
 //        RecyclerView mDrivingLicenseListRecyclerView = findViewById(R.id.driving_License_Register_RecyclerView);
-        ImageView uploaded_Driving_License_front_image = findViewById(R.id.img_DrivingLicenseRegisterActivity_UploadedImage_Front);
-        uploaded_Driving_License_front_image.setClipToOutline(true);
+        img_DrivingLicenseRegisterActivity_UploadedImage_Front = findViewById(R.id.img_DrivingLicenseRegisterActivity_UploadedImage_Front);
+        img_DrivingLicenseRegisterActivity_UploadedImage_Back = findViewById(R.id.img_DrivingLicenseRegisterActivity_UploadedImage_Back);
+
         rel_DrivingLicenseRegisterActivity_FrontImageAdd.setOnClickListener(clickListener);
         rel_DrivingLicenseRegisterActivity_BackImageAdd.setOnClickListener(clickListener);
 
@@ -165,9 +189,9 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             byte[] bitmapByteArray = Util.bitmapToByteArray(drivingLicenseImage);
             boolean isSaveSuccess = DBUtils.setDrivingLicenseImage(mContext, Util.base64Encode(bitmapByteArray), isFront);
             if (isSaveSuccess) {
-                Util.confirmDialog(mContext,getString(R.string.ChangeSMSNoticeSettingActivity_SuccessSaveSetting));
+                Util.confirmDialog(mContext, getString(R.string.ChangeSMSNoticeSettingActivity_SuccessSaveSetting));
             } else {
-                Util.confirmDialog(mContext,getString(R.string.common_fail));
+                Util.confirmDialog(mContext, getString(R.string.common_fail));
             }
         }
     }
@@ -178,8 +202,8 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 //            Bitmap userImageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ble_user_default);
 //            setUserProfileImage(userImageBitmap);
 //        } else {
-//            userProfilePhoto = Util.getBitmapFromByteArray(Util.base64Decode(profileImage));
-//            setUserProfileImage(userProfilePhoto);
+//            drivingLicenseImage = Util.getBitmapFromByteArray(Util.base64Decode(profileImage));
+//            setUserProfileImage(drivingLicenseImage);
 //        }
 //    }
 
@@ -189,18 +213,19 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         deleteTempFile(path);
         Util.customViewDialog(this, getString(R.string.DrivingLicenseCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_drivinglicense_select, new CustomDialog.OnCustomInitialize() {
             CustomDialog dialog;
+
             @Override
             public void onInitialize(View contentView, CustomDialog dialog) {
                 this.dialog = dialog;
                 contentView.findViewById(R.id.btn_driving_license_take_photo).setOnClickListener(popupListener);
                 contentView.findViewById(R.id.btn_driving_license_find_gallery).setOnClickListener(popupListener);
             }
+
             private View.OnClickListener popupListener = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     dialog.dismiss();
-                    switch (v.getId())
-                    {
+                    switch (v.getId()) {
                         case R.id.btn_driving_license_take_photo:
                             openCamera(isFront);
                             break;
@@ -210,7 +235,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                     }
                 }
             };
-        },getString(R.string.Common_Close),null,false);
+        }, getString(R.string.Common_Close), null, false);
     }
 
     private boolean deleteTempFile(File path) {
@@ -247,8 +272,8 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
     }
 
     private void openCamera(Boolean isFront) {
-        if(ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            if(!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
                     || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(DrivingLicenseRegisterActivity.this, Manifest.permission.CAMERA))) {
                 ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_CAMERA_PERMISSIONS, PERMISSION_CHECK_CAMERA_ID);
 
@@ -271,7 +296,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             }
         } else {
             Intent intent = getTakePictureIntent();
-            intent.putExtra("isFront",isFront);
+            intent.putExtra("isFront", isFront);
             startActivityForResult(intent, REQUEST_CODE_CAMERA);
         }
     }
@@ -297,8 +322,51 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         return newImgPath;
     }
 
-    private String contentText(boolean isFront){
-        if(isFront){
+    private void setDrivingLicenseImage(Bitmap imageBitmap, Boolean isFront) {
+//        RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
+//        roundDrawable.setCircular(true);
+//        img_UserProfileActivity_UserImage.setImageDrawable(roundDrawable);
+
+        if (Util.isValidContextForGlide(mContext)) {
+            if (isFront) {
+                Glide.with(mContext).load(imageBitmap)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .circleCrop()
+                        .skipMemoryCache(true)
+                        .into(img_DrivingLicenseRegisterActivity_UploadedImage_Front);
+            } else {
+                Glide.with(mContext).load(imageBitmap)
+                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .circleCrop()
+                        .skipMemoryCache(true)
+                        .into(img_DrivingLicenseRegisterActivity_UploadedImage_Back);
+            }
+        }
+    }
+
+    private String getPath(Uri uri) {
+
+        if ("content".equalsIgnoreCase(uri.getScheme())) {
+            String[] projection = {"_data"};
+            Cursor cursor = null;
+
+            try {
+                cursor = this.getContentResolver().query(uri, projection, null, null, null);
+                int column_index = cursor.getColumnIndexOrThrow("_data");
+                if (cursor.moveToFirst()) {
+                    return cursor.getString(column_index);
+                }
+            } catch (Exception e) {
+                // Eat it
+            }
+        } else if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+        return null;
+    }
+
+    private String contentText(boolean isFront) {
+        if (isFront) {
             return getString(R.string.DrivingLicenseCustomDialog_ContentButton_Front_Text);
         }
         return getString(R.string.DrivingLicenseCustomDialog_ContentButton_Back_Text);
