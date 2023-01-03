@@ -46,7 +46,7 @@ import java.util.logging.Logger;
 
 public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
-    Bitmap drivingLicensePhoto = null;
+    Bitmap drivingLicenseImage = null;
     private final int TAKE_PICTURE = 1;
     private final int SELECT_PICTURE = 2;
     private final int TAKE_PHOTO = 3;
@@ -123,6 +123,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
         switch (requestCode) {
             case REQUEST_CODE_CAMERA:
+                boolean isFront = false;
                 if (resultCode == RESULT_OK || resultCode == RESULT_CANCELED) {
                     String captureUri = capturedImagePath + capturedImageFileName;
                     String manufacture = android.os.Build.MANUFACTURER;
@@ -132,13 +133,14 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                     }
                     Bitmap bitmap = PictureUtils.getSampleSizeBitmap(captureUri, 4);
                     if (bitmap != null) {
-                        if (drivingLicensePhoto != null) {
-                            drivingLicensePhoto.recycle();
-                            drivingLicensePhoto = null;
+                        if (drivingLicenseImage != null) {
+                            drivingLicenseImage.recycle();
+                            drivingLicenseImage = null;
                         }
-                        drivingLicensePhoto = bitmap;
-                        drivingLicensePhoto = PictureUtils.rotate(drivingLicensePhoto, PictureUtils.exifOrientationToDegrees(captureUri));
-//                        saveImageToLocal();
+                        drivingLicenseImage = bitmap;
+                        drivingLicenseImage = PictureUtils.rotate(drivingLicenseImage, PictureUtils.exifOrientationToDegrees(captureUri));
+                        isFront = data.getBooleanExtra("isFront",true);
+                        saveLicenseImageToLocal(isFront);
                     }
 //                    PictureUtils.deleteBitmapFile(mContext, capturedImageFileName);
                 }
@@ -158,17 +160,17 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
     }
 
-//    private void saveImageToLocal() {
-//        if (drivingLicensePhoto != null) {
-//            byte[] bitmapByteArray = Util.bitmapToByteArray(drivingLicensePhoto);
-//            boolean isSaveSuccess = DBUtils.setProfileImage(mContext, Util.base64Encode(bitmapByteArray));
-//            if (isSaveSuccess) {
-//                Util.confirmDialog(mContext,getString(R.string.ChangeSMSNoticeSettingActivity_SuccessSaveSetting));
-//            } else {
-//                Util.confirmDialog(mContext,getString(R.string.common_fail));
-//            }
-//        }
-//    }
+    private void saveLicenseImageToLocal(boolean isFront) {
+        if (drivingLicenseImage != null) {
+            byte[] bitmapByteArray = Util.bitmapToByteArray(drivingLicenseImage);
+            boolean isSaveSuccess = DBUtils.setDrivingLicenseImage(mContext, Util.base64Encode(bitmapByteArray), isFront);
+            if (isSaveSuccess) {
+                Util.confirmDialog(mContext,getString(R.string.ChangeSMSNoticeSettingActivity_SuccessSaveSetting));
+            } else {
+                Util.confirmDialog(mContext,getString(R.string.common_fail));
+            }
+        }
+    }
 //
 //    private void getImageFromLocal() {
 //        String profileImage = DBUtils.getProfileImage(mContext);
@@ -200,7 +202,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                     switch (v.getId())
                     {
                         case R.id.btn_driving_license_take_photo:
-                            openCamera();
+                            openCamera(isFront);
                             break;
                         case R.id.btn_driving_license_find_gallery:
                             openGallery();
@@ -244,7 +246,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         return intent;
     }
 
-    private void openCamera() {
+    private void openCamera(Boolean isFront) {
         if(ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if(!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
                     || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(DrivingLicenseRegisterActivity.this, Manifest.permission.CAMERA))) {
@@ -269,6 +271,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             }
         } else {
             Intent intent = getTakePictureIntent();
+            intent.putExtra("isFront",isFront);
             startActivityForResult(intent, REQUEST_CODE_CAMERA);
         }
     }

@@ -9,8 +9,12 @@
     <string name="DrivingLicenseCustomDialog_ContentButton_Back_Text">뒷면 사진을 추가해주세요.</string>
     <string name="DrivingLicenseCertificate_Text">운전면허증</string>
 
+    <string name="Common_Confirm">확인</string>
     <string name="Common_Close">닫기</string>
     <string name="Common_Cancel">취소</string>
+    <string name="common_success">성공</string>
+    <string name="common_fail">실패</string>
+    <string name="ChangeSMSNoticeSettingActivity_SuccessSaveSetting">저장완료</string>
     <string name="permissions_deny_mandatory">%s를 이용하시려면 필수권한을 허용해야 합니다.\n아래 설정 버튼을 눌러 권한을 허용해주세요.\n\n필수권한 : %s</string>
     <string name="permissions_deny_optional">%s를 이용하시려면 필수권한을 허용해야 합니다.\n아래 설정 버튼을 눌러 권한을 허용해주세요.\n\n필수권한 : %s</string>
     <string name="set">설정</string>
