@@ -10,17 +10,18 @@ import com.example.drivinglicenseupload.datadto.BluelinkSettings;
 public class DBUtils {
 
 
+    public static boolean setDrivingLicenseImage(Context context, String frontImage, String backImage) {
+//        PreferenceUtil pref = PreferenceUtil.getInstance(context);
+//        String selectedDrivingLicenseIndex = pref.getPreference(PrefKeys.KEY_DRIVING_LICENSE_INDEX);
+//
+        return BluelinkModel.getInst(context).insertDrivingLicenseImageTable(frontImage, backImage);
 
-    public static boolean setDrivingLicenseImage(Context context, String licenseImage, Boolean isFront) {
+    }
+
+    public static String getDrivingLicenseImage(Context context) {
         PreferenceUtil pref = PreferenceUtil.getInstance(context);
         String selectedUserID = pref.getPreference(PrefKeys.KEY_SELECTED_USER_ID);
-        if(isFront){
-            return BluelinkModel.getInst(context).insertDrivingLicenseImageTable(selectedUserID,
-                    BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_FRONT, licenseImage, true);
-        }else{
-            return BluelinkModel.getInst(context).insertDrivingLicenseImageTable(selectedUserID,
-                    BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_BACK, licenseImage, false);
-        }
-
+        String image = BluelinkModel.getInst(context).selectDrivingLicenseImageTable(selectedUserID, BluelinkSettings.UserInfo.USER_PHOTO);
+        return image;
     }
 }

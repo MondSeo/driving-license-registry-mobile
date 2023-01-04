@@ -19,12 +19,16 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.widget.NestedScrollView;
 
 import com.example.drivinglicenseupload.R;
+import com.example.drivinglicenseupload.ui.custom.LoadingDialog;
+import com.example.drivinglicenseupload.util.PreferenceUtil;
 import com.example.drivinglicenseupload.util.Util;
 import com.google.android.material.appbar.AppBarLayout;
 
 
 public abstract class BaseActivity_CommonGNB extends AppCompatActivity {
 
+    public PreferenceUtil preferenceUtil;
+    private LoadingDialog mProgressDialog;
     /*상단 접히는거 변수*/
     public AppBarLayout app_bar_scrolling;
     public RelativeLayout rel_TopBar;
@@ -68,6 +72,7 @@ public abstract class BaseActivity_CommonGNB extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_common_gnb);
         mContext = this;
+        preferenceUtil = PreferenceUtil.getInstance(this);
         initBaseLayout();
 
     }
@@ -348,6 +353,39 @@ public abstract class BaseActivity_CommonGNB extends AppCompatActivity {
         tv_vehicle_name.setText(vehicleName);
         btn_change_setting.setOnClickListener(clickListener);
 //        initInfoData();
+    }
+
+
+    public void startProgress(final int StringRes)
+    {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                    if (mProgressDialog == null || !mProgressDialog.isShowing())
+                        mProgressDialog = new LoadingDialog(mContext, getString(StringRes));
+                    else
+                        mProgressDialog.setProgressText(getString(StringRes));
+                    mProgressDialog.setCancelable(false);
+
+                    mProgressDialog.show();
+            }
+        });
+    }
+
+    public void endProgress()
+    {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                //getMemoryLog(); //yws - 프로그레스바 종료 시 메모리 로그 남기기
+                if (mProgressDialog != null && mProgressDialog.isShowing())
+                {
+                    mProgressDialog.dismiss();
+                    mProgressDialog = null;
+                }
+            }
+        });
     }
 
 //    private void initInfoData() {

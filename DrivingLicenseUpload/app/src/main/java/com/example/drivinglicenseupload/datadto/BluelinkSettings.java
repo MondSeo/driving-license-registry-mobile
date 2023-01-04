@@ -72,28 +72,6 @@ public class BluelinkSettings {
 		 */
 		public static final String USER_PHOTO_CPW = "user_photo_cpw";
 
-		//Mond 추가
-		/**
-		 * Type : TEXT
-		 */
-		public static final String DRIVING_LICENSE_IMAGE_FRONT = "driving_license_image_front";
-
-		/**
-		 * Type : TEXT
-		 */
-		public static final String DRIVING_LICENSE_IMAGE_FRONT_CPW = "driving_license_image_front_cpw";
-
-		/**
-		 * Type : TEXT
-		 */
-		public static final String DRIVING_LICENSE_IMAGE_BACK = "driving_license_image_back";
-
-		/**
-		 * Type : TEXT
-		 */
-		public static final String DRIVING_LICENSE_IMAGE_BACK_CPW = "driving_license_image_back_cpw";
-
-
 	}
 	
 	public static final class VehicleStatus {
@@ -190,6 +168,37 @@ public class BluelinkSettings {
 		 * Type : TEXT
 		 */
 		public static final String PHONE_NUM = "phone_num";
+	}
+
+	//Mond 추가
+	public static final class DrivingLicenseImage {
+		//Mond 추가
+		/**
+		 * Type : INTEGER
+		 * PRIMARY KEY AUTOINCREMENT
+		 */
+		public static final String INDEX = "_index";
+
+		/**
+		 * Type : TEXT
+		 */
+		public static final String DRIVING_LICENSE_IMAGE_FRONT = "driving_license_image_front";
+
+		/**
+		 * Type : TEXT
+		 */
+		public static final String DRIVING_LICENSE_IMAGE_FRONT_CPW = "driving_license_image_front_cpw";
+
+		/**
+		 * Type : TEXT
+		 */
+		public static final String DRIVING_LICENSE_IMAGE_BACK = "driving_license_image_back";
+
+		/**
+		 * Type : TEXT
+		 */
+		public static final String DRIVING_LICENSE_IMAGE_BACK_CPW = "driving_license_image_back_cpw";
+
 	}
 	
 //	public static final class POI {

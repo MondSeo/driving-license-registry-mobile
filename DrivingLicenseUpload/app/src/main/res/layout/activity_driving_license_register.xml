@@ -19,8 +19,8 @@
         <ImageView
             android:id="@+id/img_DrivingLicenseRegisterActivity_UploadedImage_Front"
             android:layout_width="match_parent"
+            android:scaleType="centerCrop"
             android:layout_height="170dp"
-            android:scaleType="fitStart"
             android:visibility="gone" />
 
         <LinearLayout
@@ -61,9 +61,8 @@
             android:id="@+id/img_DrivingLicenseRegisterActivity_UploadedImage_Back"
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:scaleType="fitCenter"
+            android:scaleType="centerCrop"
             android:background="@drawable/drawable_circle_edge"
-            android:clipToOutline="true"
             android:visibility="gone" />
 
         <LinearLayout

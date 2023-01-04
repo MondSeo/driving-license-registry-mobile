@@ -8,7 +8,9 @@
     <string name="DrivingLicenseCustomDialog_ContentButton_Front_Text">앞면 사진을 추가해주세요.</string>
     <string name="DrivingLicenseCustomDialog_ContentButton_Back_Text">뒷면 사진을 추가해주세요.</string>
     <string name="DrivingLicenseCertificate_Text">운전면허증</string>
+    <string name="DrivingLicenseCertificate_Registering_Text">운전면허증 등록중…</string>
 
+    <string name="MyListActivity_DrivingLicense_info_yes">등록 완료</string>
     <string name="Common_Confirm">확인</string>
     <string name="Common_Close">닫기</string>
     <string name="Common_Cancel">취소</string>

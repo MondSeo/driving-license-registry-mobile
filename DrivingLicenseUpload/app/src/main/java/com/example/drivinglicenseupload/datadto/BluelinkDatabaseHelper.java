@@ -85,20 +85,20 @@ public class BluelinkDatabaseHelper extends SQLiteOpenHelper {
     private String getDrivingLicenseImageCreateQuery(){
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE IF NOT EXISTS " + TABLE_DRIVING_LICENSE_IMAGE);
-        sb.append( " ('userId' TEXT PRIMARY KEY ,");
-        sb.append(" ('" + BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_FRONT + "' TEXT DEFAULT NULL,");
-        sb.append(" '" + BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_BACK + "' TEXT DEFAULT NULL)");
+        sb.append(" ('" + BluelinkSettings.DrivingLicenseImage.INDEX + "' INT PRIMARY KEY ,");
+        sb.append(" '" + BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT + "' TEXT DEFAULT NULL,");
+        sb.append(" '" + BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK + "' TEXT DEFAULT NULL)");
         return sb.toString();
     }
 
     //Mond 추가
-    private String addDringLicenseImageCpwColumn(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("ALTER TABLE " + TABLE_DRIVING_LICENSE_IMAGE + " ADD COLUMN ");
-        sb.append(BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_FRONT_CPW);
-        sb.append(BluelinkSettings.UserInfo.DRIVING_LICENSE_IMAGE_BACK_CPW);
-        return sb.toString();
-    }
+//    private String addDringLicenseImageCpwColumn(){
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("ALTER TABLE " + TABLE_DRIVING_LICENSE_IMAGE + " ADD COLUMN ");
+//        sb.append(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT_CPW + ", ");
+//        sb.append(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK_CPW);
+//        return sb.toString();
+//    }
 
     @Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -109,7 +109,7 @@ public class BluelinkDatabaseHelper extends SQLiteOpenHelper {
 
     private void dbUpgradeForCpwColumn(SQLiteDatabase db) {
         db.execSQL(addUserPhotoCpwColumn());
-        db.execSQL(addDringLicenseImageCpwColumn());
+//        db.execSQL(addDringLicenseImageCpwColumn());
     }
 
 

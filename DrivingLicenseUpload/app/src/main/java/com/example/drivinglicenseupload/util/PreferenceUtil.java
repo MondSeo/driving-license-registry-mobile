@@ -47,6 +47,23 @@ public class PreferenceUtil {
         }
     }
 
+    public synchronized void setPreference(String key, boolean value) {
+        try {
+            SharedPreferences.Editor editor = pref.edit();
+            String result;
+
+            result = String.valueOf(value);
+
+            editor.putString(key, result);
+            editor.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
     public synchronized String getPreference(String key) {
         try {

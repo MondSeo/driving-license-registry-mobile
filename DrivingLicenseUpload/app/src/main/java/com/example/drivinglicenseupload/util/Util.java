@@ -77,6 +77,10 @@ public class Util {
         return mConfirmDialog;
     }
 
+    public static CustomDialog confirmDialog(Context context, String contentText, View.OnClickListener okOnClickListener) {
+        return confirmDialog(context,null, contentText, context.getResources().getString(R.string.Common_Confirm), okOnClickListener);
+    }
+
     public static byte[] bitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
