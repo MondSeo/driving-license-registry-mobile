@@ -68,14 +68,13 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
         rel_DrivingLicenseListActivity_EmptyList = findViewById(R.id.rel_DrivingLicenseListActivity_EmptyList);
         rcl_DrivingLicenseListActivity = findViewById(R.id.rcl_DrivingLicenseListActivity);
 
-
-
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivityForResult(DrivingLicenseRegisterActivity.class, REQUEST_CODE_IMAGE);
             }
         };
+
 
         btn_DrivingLicenseListActivity_ListAdd.setOnClickListener(clickListener);
         rel_DrivingLicenseListActivity_EmptyList.setOnClickListener(clickListener);
@@ -93,6 +92,15 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
         rcl_DrivingLicenseListActivity.setLayoutManager(new LinearLayoutManager(mContext));
         rcl_DrivingLicenseListActivity.setAdapter(mAdapter);
 
+        mAdapter.setOnItemClickListener(new DrivingLicenseListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Intent intent = new Intent(mContext, DrivingLicenseDetailActivity.class);
+                intent.putExtra("FrontImage",mDataList.get(position).getmFrontDrivingLicenseBitmap());
+                intent.putExtra("BackImage",mDataList.get(position).getmBackDrivingLicenseBitmap());
+                startActivity(intent);
+            }
+        });
         if (mDataList == null || mDataList.isEmpty()) {
             rel_DrivingLicenseListActivity_EmptyList.setVisibility(View.VISIBLE);
             rcl_DrivingLicenseListActivity.setVisibility(View.GONE);

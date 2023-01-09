@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.drivinglicenseupload'
+    namespace 'com.example.mylicenseregistry'
     compileSdkVersion 33
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        applicationId "com.example.idcarduploadapp"
+        applicationId "com.example.mylicenseregistry"
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 1

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rel_MyLicenseActivity_Driving_License_Certificate"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@drawable/btn_transparent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:textColor="@color/color_text_ffffff_222222"
+            android:text="@string/DrivingLicenseCertificate_Text"
+            android:layout_alignParentLeft="true"
+            />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/menu_arrow"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_line_ffffff_e6e6e6"
+            android:alpha="@integer/float_line_alpha"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rel_MyLicenseActivity_Vehicle_Registration_Certificate"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:background="@drawable/btn_transparent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:textColor="@color/color_text_ffffff_222222"
+            android:text="@string/VehicleRegistrationCertificate_Text"
+            android:layout_alignParentLeft="true"
+            />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/menu_arrow"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_line_ffffff_e6e6e6"
+            android:alpha="@integer/float_line_alpha"
+            />
+    </RelativeLayout>
+</LinearLayout>

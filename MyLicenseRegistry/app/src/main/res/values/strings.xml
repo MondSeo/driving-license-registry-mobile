@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DrivingLicenseUpload</string>
+    <string name="app_name">MyLicenseRegistry</string>
     <string name="DrivingLicenseRegisterActivity_FrontContentButton_Text">이곳을 클릭하여 운전면허증을 업로드 해주세요. (앞면)</string>
     <string name="DrivingLicenseRegisterActivity_BackContentButton_Text">이곳을 클릭하여 운전면허증을 업로드 해주세요. (뒷면)</string>
     <string name="DrivingLicenseRegisterActivity_ListAdd_Text">+ 추가</string>
@@ -8,8 +8,13 @@
     <string name="DrivingLicenseCustomDialog_ContentButton_Front_Text">앞면 사진을 추가해주세요.</string>
     <string name="DrivingLicenseCustomDialog_ContentButton_Back_Text">뒷면 사진을 추가해주세요.</string>
     <string name="DrivingLicenseCertificate_Text">운전면허증</string>
+    <string name="DrivingLicenseDetailActivity_Title">운전면허증 상세</string>
     <string name="VehicleRegistrationCertificate_Text">차량등록증</string>
+    <string name="MyLicenseActivity_Title">My License</string>
+    <string name="Common_Delete">삭제</string>
 
+
+    <string name="Common_Save">저장</string>
     <string name="MyListActivity_DrivingLicense_info_yes">등록 완료</string>
     <string name="Common_Confirm">확인</string>
     <string name="Common_Close">닫기</string>
@@ -28,7 +33,6 @@
     <string name="driver_license_popup_content_ble_bluelink">친애하는 사용자 여러분, 계정의 보안 및 차량 사용을 강화하기 위해 BLE 블루투스 키 기능을 사용하기 전에 현재 계정에 로그인된 차량의 운전 면허증 사진을 업로드해야 합니다.\n메뉴 → 내 정보를 통해서도 신분증 사진을 업로드할 수 있습니다.\n\n상세 상담 : 400-806-6066</string>
     <string name="driver_license_popup_content_ble_kia">친애하는 사용자 여러분, 계정의 보안 및 차량 사용을 강화하기 위해 BLE 블루투스 키 기능을 사용하기 전에 현재 계정에 로그인된 차량의 운전 면허증 사진을 업로드해야 합니다.\n메뉴 → 내 정보를 통해서도 신분증 사진을 업로드할 수 있습니다.\n\n상세 상담 : 400-807-0018</string>
     <string name="driver_license_popup_checkbox">7일 동안 보지 않기</string>
-    <string name="My_License">My License</string>
 
 
 </resources>

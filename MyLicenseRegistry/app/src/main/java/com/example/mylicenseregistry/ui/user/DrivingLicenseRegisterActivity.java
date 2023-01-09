@@ -43,7 +43,6 @@ import java.io.IOException;
 
 public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
-    Bitmap drivingLicenseImage = null;
     Bitmap drivingLicenseImageFront = null;
     Bitmap drivingLicenseImageBack = null;
 
@@ -51,11 +50,6 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
     ImageView img_DrivingLicenseRegisterActivity_UploadedImage_Back;
     LinearLayout lin_DrivingLicenseRegisterActivity_Front;
     LinearLayout lin_DrivingLicenseRegisterActivity_Back;
-
-    private final int TAKE_PICTURE = 1;
-    private final int SELECT_PICTURE = 2;
-    private final int TAKE_PHOTO = 3;
-    private final int EDIT_DELETE_PHOTO = 4;
 
     String capturedImageFileName;
     String capturedImagePath;

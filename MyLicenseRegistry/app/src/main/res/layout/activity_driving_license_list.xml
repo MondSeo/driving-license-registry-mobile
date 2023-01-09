@@ -35,14 +35,14 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <com.example.mylicenseregistry.widget.ContentButton
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:visibility="gone"
         android:layout_below="@+id/rcl_DrivingLicenseListActivity"
         android:id="@+id/btn_DrivingLicenseListActivity_ListAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:button_style="B"
-        android:text="@string/DrivingLicenseRegisterActivity_ListAdd_Text"
+        app:text="@string/DrivingLicenseRegisterActivity_ListAdd_Text"
         android:textAllCaps="false"
         android:textColor="@color/black"/>
 

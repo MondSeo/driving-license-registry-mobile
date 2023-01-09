@@ -60,7 +60,7 @@ public class ContentButton extends LinearLayout
             case BUTTONSTYLE_B:
                 lin_ContentButton_Background.setBackgroundResource(R.drawable.btn_content_b);
                 txt_ContentButton.setTextColor(getResources().getColorStateList(R.color.button_text_content_b));
-                lin_ContentButton.setPadding(Util.dpToPx(20),Util.dpToPx(5),Util.dpToPx(20),Util.dpToPx(5));
+                lin_ContentButton.setPadding(Util.dpToPx(10),Util.dpToPx(5),Util.dpToPx(10),Util.dpToPx(5));
                 break;
             case BUTTONSTYLE_C:
                 lin_ContentButton_Background.setBackgroundResource(R.drawable.btn_content_c);

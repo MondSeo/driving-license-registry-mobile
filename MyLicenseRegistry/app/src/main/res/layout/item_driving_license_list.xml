@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/rel_id_card_list_item"
+    android:id="@+id/rel_DrivingLicense_ListItem"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -14,7 +14,6 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:background="@drawable/drawable_circle_edge"
-            android:id="@+id/lin_Registry_Id_Card_Front"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:orientation="horizontal">

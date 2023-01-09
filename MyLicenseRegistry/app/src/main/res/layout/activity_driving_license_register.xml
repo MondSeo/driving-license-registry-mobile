@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/rel_Driving_License_list_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
    >
 
     <RelativeLayout
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:id="@+id/rel_DrivingLicenseRegisterActivity_Front"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,13 +46,14 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:id="@+id/rel_DrivingLicenseRegisterActivity_Back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rel_DrivingLicenseRegisterActivity_Front"
-        android:layout_marginTop="10dp"
+
         android:background="@drawable/drawable_circle_edge"
         android:orientation="vertical">
 
