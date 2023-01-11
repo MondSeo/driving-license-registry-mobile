@@ -1,11 +1,8 @@
 package com.example.mylicenseregistry.ui.user;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.example.mylicenseregistry.R;
 import com.example.mylicenseregistry.ui.BaseActivity_CommonGNB;
@@ -18,7 +15,7 @@ public class MyLicenseActivity extends BaseActivity_CommonGNB {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_license);
-
+        initLayout();
     }
 
     @Override
@@ -40,7 +37,7 @@ public class MyLicenseActivity extends BaseActivity_CommonGNB {
                         startActivity(DrivingLicenseListActivity.class);
                         break;
                     case R.id.rel_MyLicenseActivity_Vehicle_Registration_Certificate:
-                        startActivity(VehicleRegistrationCertificateListActivity.class);
+                        startActivity(VehicleRegistrationListActivity.class);
                         break;
                 }
             }

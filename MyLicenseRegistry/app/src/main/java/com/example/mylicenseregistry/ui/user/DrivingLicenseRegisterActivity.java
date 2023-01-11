@@ -267,7 +267,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
         File path = new File(tempDirectoryStr);
         deleteTempFile(path);
-        Util.customViewDialog(this, getString(R.string.DrivingLicenseCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_drivinglicense_select, new CustomDialog.OnCustomInitialize() {
+        Util.customViewDialog(this, getString(R.string.DrivingLicenseCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_license_select, new CustomDialog.OnCustomInitialize() {
             CustomDialog dialog;
 
             @Override
@@ -430,9 +430,9 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
 
     private String contentText(boolean isFront) {
         if (isFront) {
-            return getString(R.string.DrivingLicenseCustomDialog_ContentButton_Front_Text);
+            return getString(R.string.Common_CustomDialog_ContentButton_LicenseFront_Text);
         }
-        return getString(R.string.DrivingLicenseCustomDialog_ContentButton_Back_Text);
+        return getString(R.string.Common_CustomDialog_ContentButton_LicenseBack_Text);
     }
 
 

@@ -187,18 +187,26 @@ public class BluelinkSettings {
 		/**
 		 * Type : TEXT
 		 */
-		public static final String DRIVING_LICENSE_IMAGE_FRONT_CPW = "driving_license_image_front_cpw";
-
-		/**
-		 * Type : TEXT
-		 */
 		public static final String DRIVING_LICENSE_IMAGE_BACK = "driving_license_image_back";
 
+	}
+
+	public static final class VehicleRegistrationImage {
+		/**
+		 * Type : INTEGER
+		 * PRIMARY KEY AUTOINCREMENT
+		 */
+		public static final String INDEX = "_index";
+
 		/**
 		 * Type : TEXT
 		 */
-		public static final String DRIVING_LICENSE_IMAGE_BACK_CPW = "driving_license_image_back_cpw";
+		public static final String VEHICLE_REGISTRATION_IMAGE_FRONT = "vehicle_registration_image_front";
 
+		/**
+		 * Type : TEXT
+		 */
+		public static final String VEHICLE_REGISTRATION_IMAGE_BACK = "vehicle_registration_image_back";
 	}
 	
 //	public static final class POI {

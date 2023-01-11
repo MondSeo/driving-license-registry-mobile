@@ -17,12 +17,13 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar"
         tools:targetApi="31">
         <activity
-            android:name=".ui.user.VehicleRegistrationCertificateListActivity"
+            android:name=".ui.user.VehicleRegistrationDetailActivity"
             android:exported="false"
             android:theme="@style/AppTheme">
             <meta-data
@@ -30,7 +31,15 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.user.VehicleRegistrationCertificateRegisterActivity"
+            android:name=".ui.user.VehicleRegistrationListActivity"
+            android:exported="false"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.user.VehicleRegistrationRegisterActivity"
             android:exported="false"
             android:theme="@style/AppTheme">
             <meta-data
@@ -41,6 +50,11 @@
             android:name=".ui.user.MyLicenseActivity"
             android:exported="true"
             android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
@@ -48,14 +62,8 @@
         </activity>
         <activity
             android:name=".ui.user.DrivingLicenseListActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -76,6 +84,7 @@
                 android:name="android.app.lib.name"
                 android:value="" />
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -86,4 +95,5 @@
                 android:resource="@xml/filepath" />
         </provider>
     </application>
+
 </manifest>

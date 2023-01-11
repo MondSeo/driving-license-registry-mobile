@@ -20,6 +20,7 @@ public class BluelinkDatabaseHelper extends SQLiteOpenHelper {
 
     //Mond 추가
     public static final String TABLE_DRIVING_LICENSE_IMAGE = "DRIVING_LICENSE_IMAGE";
+    public static final String TABLE_VEHICLE_REGISTRATION_IMAGE = "VEHICLE_REGISTRATION_IMAGE";
 
     public static final String TABLE_USER_PHOTO = "USER_PHOTO";
 	public static final String TABLE_USER_INFO = "USER_INFO";

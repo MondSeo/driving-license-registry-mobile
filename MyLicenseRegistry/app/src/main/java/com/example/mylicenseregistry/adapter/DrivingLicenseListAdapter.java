@@ -1,14 +1,11 @@
 package com.example.mylicenseregistry.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +16,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import com.example.mylicenseregistry.R;
 import com.example.mylicenseregistry.datadto.DrivingLicenseImage;
-import com.example.mylicenseregistry.ui.user.DrivingLicenseDetailActivity;
 import com.example.mylicenseregistry.util.Util;
 
 import java.util.ArrayList;
@@ -65,9 +61,9 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
     @Override
     public void onBindViewHolder(DrivingLicenseListAdapter.ViewHolder holder, int position) {
         final DrivingLicenseImage item = mDataList.get(position);
-        String frontImage = item.getmFrontDrivingLicenseBitmap();
+        String frontImage = item.getFrontDrivingLicenseBitmap();
         Bitmap drivingLicenseFrontImage = Util.getBitmapFromByteArray(Util.base64Decode(frontImage));
-        String backImage = item.getmBackDrivingLicenseBitmap();
+        String backImage = item.getBackDrivingLicenseBitmap();
         Bitmap drivingLicenseBackImage = Util.getBitmapFromByteArray(Util.base64Decode(backImage));
 
         Glide.with(mContext).load(drivingLicenseFrontImage)
@@ -87,6 +83,7 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onItemClick(v, position);
+
                 }
             }
         });

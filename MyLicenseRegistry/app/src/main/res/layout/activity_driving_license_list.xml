@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:button_style="B"
-        app:text="@string/DrivingLicenseRegisterActivity_ListAdd_Text"
+        app:text="@string/Common_License_ListAdd_Text"
         android:textAllCaps="false"
         android:textColor="@color/black"/>
 

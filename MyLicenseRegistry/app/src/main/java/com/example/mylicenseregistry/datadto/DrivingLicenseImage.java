@@ -8,27 +8,27 @@ public class DrivingLicenseImage implements Serializable {
     private String mFrontDrivingLicenseBitmap;
     private String mBackDrivingLicenseBitmap;
 
-    public int getmIndex() {
+    public int getIndex() {
         return mIndex;
     }
 
-    public void setmIndex(int mIndex) {
+    public void setIndex(int mIndex) {
         this.mIndex = mIndex;
     }
 
-    public String getmFrontDrivingLicenseBitmap() {
+    public String getFrontDrivingLicenseBitmap() {
         return mFrontDrivingLicenseBitmap;
     }
 
-    public void setmFrontDrivingLicenseBitmap(String mFrontDrivingLicenseBitmap) {
+    public void setFrontDrivingLicenseBitmap(String mFrontDrivingLicenseBitmap) {
         this.mFrontDrivingLicenseBitmap = mFrontDrivingLicenseBitmap;
     }
 
-    public String getmBackDrivingLicenseBitmap() {
+    public String getBackDrivingLicenseBitmap() {
         return mBackDrivingLicenseBitmap;
     }
 
-    public void setmBackDrivingLicenseBitmap(String mBackDrivingLicenseBitmap) {
+    public void setBackDrivingLicenseBitmap(String mBackDrivingLicenseBitmap) {
         this.mBackDrivingLicenseBitmap = mBackDrivingLicenseBitmap;
     }
 
