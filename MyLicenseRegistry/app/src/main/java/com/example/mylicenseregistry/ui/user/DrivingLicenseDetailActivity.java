@@ -14,6 +14,9 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.mylicenseregistry.R;
+import com.example.mylicenseregistry.datadto.BluelinkModel;
+import com.example.mylicenseregistry.datadto.BluelinkSettings;
+import com.example.mylicenseregistry.datadto.DrivingLicenseImage;
 import com.example.mylicenseregistry.ui.BaseActivity_CommonGNB;
 import com.example.mylicenseregistry.util.PictureUtils;
 import com.example.mylicenseregistry.util.Util;
@@ -23,6 +26,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
 
@@ -34,7 +38,7 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
     Bitmap drivingLicenseBackImage;
     private String TAG = "DrivingLicenseDetailActivity";
 
-
+    private ArrayList<DrivingLicenseImage> mDataList = new ArrayList<DrivingLicenseImage>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,31 +62,22 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        String frontImagePath = (bundle.getString("FrontImagePath")) + "/_LicenseFront.jpg";
-        String backImagePath = (bundle.getString("BackImagePath")) + "/_LicenseBack.jpg";
         int position = bundle.getInt("Position");
-        Bitmap frontBitmap = PictureUtils.getSampleSizeBitmap(frontImagePath, 4);
-        Bitmap backBitmap = PictureUtils.getSampleSizeBitmap(backImagePath, 4);
 
+        mDataList = new ArrayList<>();
+        ArrayList<Bundle> dbArrayList = null;
 
-        if (frontBitmap != null) {
-            if (drivingLicenseFrontImage != null) {
-                drivingLicenseFrontImage.recycle();
-                drivingLicenseFrontImage = null;
+        dbArrayList = BluelinkModel.getInst(mContext).selectPositionDrivingLicenseImage(position + 1);
+        if (dbArrayList != null) {
+            for (Bundle item : dbArrayList) {
+                String frontBitmapStr = item.getString(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT);
+                drivingLicenseFrontImage = Util.getBitmapFromByteArray(Util.base64Decode(frontBitmapStr));
+                String backBitmapStr = item.getString(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK);
+                drivingLicenseBackImage = Util.getBitmapFromByteArray(Util.base64Decode(backBitmapStr));
+
             }
-            drivingLicenseFrontImage = frontBitmap;
-            drivingLicenseFrontImage = PictureUtils.rotate(drivingLicenseFrontImage, PictureUtils.exifOrientationToDegrees(frontImagePath));
-
         }
-        if (backBitmap != null) {
-            if (drivingLicenseBackImage != null) {
-                drivingLicenseBackImage.recycle();
-                drivingLicenseBackImage = null;
-            }
-            drivingLicenseBackImage = backBitmap;
-            drivingLicenseBackImage = PictureUtils.rotate(drivingLicenseBackImage, PictureUtils.exifOrientationToDegrees(backImagePath));
 
-        }
         setImageResources(drivingLicenseFrontImage, drivingLicenseBackImage);
 
         View.OnClickListener clickListener = new View.OnClickListener() {

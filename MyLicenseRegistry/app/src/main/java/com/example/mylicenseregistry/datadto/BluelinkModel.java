@@ -126,8 +126,44 @@ public class BluelinkModel {
             }
         }
         return list;
+    }
 
+    public ArrayList<Bundle> selectPositionDrivingLicenseImage(int index){
+        ArrayList<Bundle> list = new ArrayList<Bundle>();
+        Cursor cursor = null;
+        try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("SELECT");
+            sb.append(" *");
+            sb.append(" FROM " + BluelinkDatabaseHelper.TABLE_DRIVING_LICENSE_IMAGE);
+            sb.append(" WHERE " + "_index = "+ index);
+            sb.append(";");
+//            Logger.v(getClass().getSimpleName(), sb.toString());
 
+            cursor = mDB.rawQuery(sb.toString(), null);
+            if(cursor == null)
+                return list;
+            while (cursor.moveToNext()){
+                Bundle bundle = new Bundle();
+
+                int numIndex = cursor.getInt(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.INDEX));
+                String frontImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT));
+                String backImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK));
+
+                bundle.putInt(BluelinkSettings.DrivingLicenseImage.INDEX,numIndex);
+                bundle.putString(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT,frontImage);
+                bundle.putString(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK,backImage);
+                list.add(bundle);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+//            errorLogcat("selectUserPhotoTable 실패",e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return list;
     }
 
     public boolean deleteDrivingLicenseImage(int index)
@@ -243,6 +279,45 @@ public class BluelinkModel {
 
         return true;
     }
+
+    public ArrayList<Bundle> selectPositionVehicleRegistrationImage(int index){
+        ArrayList<Bundle> list = new ArrayList<Bundle>();
+        Cursor cursor = null;
+        try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("SELECT");
+            sb.append(" *");
+            sb.append(" FROM " + BluelinkDatabaseHelper.TABLE_VEHICLE_REGISTRATION_IMAGE);
+            sb.append(" WHERE " + "_index = "+ index);
+            sb.append(";");
+//            Logger.v(getClass().getSimpleName(), sb.toString());
+
+            cursor = mDB.rawQuery(sb.toString(), null);
+            if(cursor == null)
+                return list;
+            while (cursor.moveToNext()){
+                Bundle bundle = new Bundle();
+
+                int numIndex = cursor.getInt(cursor.getColumnIndex(BluelinkSettings.VehicleRegistrationImage.INDEX));
+                String frontImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_FRONT));
+                String backImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_BACK));
+
+                bundle.putInt(BluelinkSettings.VehicleRegistrationImage.INDEX,numIndex);
+                bundle.putString(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_FRONT,frontImage);
+                bundle.putString(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_BACK,backImage);
+                list.add(bundle);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+//            errorLogcat("selectUserPhotoTable 실패",e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return list;
+    }
+
 
 
 

@@ -33,11 +33,6 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
     RelativeLayout rel_VehicleRegistrationListActivity_EmptyList;
     ContentButton btn_VehicleRegistrationListActivity_ListAdd;
     RecyclerView rcl_VehicleRegistrationListActivity;
-    String tempDirectoryStr;
-    String VehicleRegistrationFrontImageFileName;
-    String VehicleRegistrationBackImageFileName;
-    String imageFilePath;
-    String imageUri;
 
     private ArrayList<VehicleRegistrationImage> mDataList = new ArrayList<VehicleRegistrationImage>();
 
@@ -120,44 +115,7 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
             @Override
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(mContext, VehicleRegistrationDetailActivity.class);
-                tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
-                File path = new File(tempDirectoryStr);
-                deleteTempFile(path);
-
-                Bitmap VehicleRegistrationFrontDetailImage =  Util.getBitmapFromByteArray(
-                        Util.base64Decode(mDataList.get(position).getFrontVehicleRegistrationBitmap()));
-                Bitmap VehicleRegistrationBackDetailImage =  Util.getBitmapFromByteArray(
-                        Util.base64Decode(mDataList.get(position).getBackVehicleRegistrationBitmap()));
-
-                VehicleRegistrationFrontImageFileName = "licensefront";
-                VehicleRegistrationBackImageFileName = "licenseback";
-                File frontSavePath = new File(tempDirectoryStr, VehicleRegistrationFrontImageFileName);
-                File backSavePath = new File(tempDirectoryStr, VehicleRegistrationBackImageFileName);
-                if (!frontSavePath.exists()){
-                    frontSavePath.mkdirs();
-                }
-                if (!backSavePath.exists()){
-                    backSavePath.mkdirs();
-                }
-
-                try {
-                    Log.d(TAG, "frontFOS 시작");
-                    FileOutputStream frontFos =  new FileOutputStream(new File(frontSavePath, "_LicenseFront.jpg"));
-                    VehicleRegistrationFrontDetailImage.compress(Bitmap.CompressFormat.JPEG, 100, frontFos);
-                    frontFos.flush();
-                    frontFos.close();
-                    FileOutputStream backFos = new FileOutputStream(new File(backSavePath, "_LicenseBack.jpg"));
-                    VehicleRegistrationBackDetailImage.compress(Bitmap.CompressFormat.JPEG, 100, backFos);
-                    backFos.flush();
-                    backFos.close();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
                 intent.putExtra("Position", position);
-                intent.putExtra("FrontImagePath",tempDirectoryStr + VehicleRegistrationFrontImageFileName);
-                intent.putExtra("BackImagePath",tempDirectoryStr + VehicleRegistrationBackImageFileName);
                 startActivityForResult(intent,REQUEST_CODE_IMAGE_DETAIL);
             }
         });

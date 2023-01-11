@@ -34,11 +34,6 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
     RelativeLayout rel_DrivingLicenseListActivity_EmptyList;
     ContentButton btn_DrivingLicenseListActivity_ListAdd;
     RecyclerView rcl_DrivingLicenseListActivity;
-    String tempDirectoryStr;
-    String drivingLicenseFrontImageFileName;
-    String drivingLicenseBackImageFileName;
-    String imageFilePath;
-    String imageUri;
 
     private ArrayList<DrivingLicenseImage> mDataList = new ArrayList<DrivingLicenseImage>();
 
@@ -121,47 +116,7 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
             @Override
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(mContext, DrivingLicenseDetailActivity.class);
-                tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
-                File path = new File(tempDirectoryStr);
-                deleteTempFile(path);
-
-                Bitmap drivingLicenseFrontDetailImage =  Util.getBitmapFromByteArray(
-                        Util.base64Decode(mDataList.get(position).getFrontDrivingLicenseBitmap()));
-                Bitmap drivingLicenseBackDetailImage =  Util.getBitmapFromByteArray(
-                        Util.base64Decode(mDataList.get(position).getBackDrivingLicenseBitmap()));
-
-                drivingLicenseFrontImageFileName = "licensefront";
-                drivingLicenseBackImageFileName = "licenseback";
-                    File frontSavePath = new File(tempDirectoryStr, drivingLicenseFrontImageFileName);
-                    File backSavePath = new File(tempDirectoryStr, drivingLicenseBackImageFileName);
-                   if (!frontSavePath.exists()){
-                        frontSavePath.mkdirs();
-                    }
-                  if (!backSavePath.exists()){
-                      backSavePath.mkdirs();
-                    }
-
-                try {
-                    Log.d(TAG, "frontFOS 시작");
-                    FileOutputStream frontFos =  new FileOutputStream(new File(frontSavePath, "_LicenseFront.jpg"));
-                    drivingLicenseFrontDetailImage.compress(Bitmap.CompressFormat.JPEG, 100, frontFos);
-                    frontFos.flush();
-                    frontFos.close();
-                    FileOutputStream backFos = new FileOutputStream(new File(backSavePath, "_LicenseBack.jpg"));
-                    drivingLicenseBackDetailImage.compress(Bitmap.CompressFormat.JPEG, 100, backFos);
-                    backFos.flush();
-                    backFos.close();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-//                byte[] encodedFrontImage = Util.base64Decode(mDataList.get(position).getmFrontDrivingLicenseBitmap());
-//                byte[] encodedBackImage = Util.base64Decode(mDataList.get(position).getmBackDrivingLicenseBitmap());
                 intent.putExtra("Position", position);
-                intent.putExtra("FrontImagePath",tempDirectoryStr + drivingLicenseFrontImageFileName);
-                intent.putExtra("BackImagePath",tempDirectoryStr + drivingLicenseBackImageFileName);
                 startActivityForResult(intent,REQUEST_CODE_IMAGE_DETAIL);
             }
         });
