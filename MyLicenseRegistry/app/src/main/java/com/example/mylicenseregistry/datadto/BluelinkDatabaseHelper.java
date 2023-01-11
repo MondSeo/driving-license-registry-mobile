@@ -45,6 +45,7 @@ public class BluelinkDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(getBleRemoteControlCreateQuery()); // 201028
         db.execSQL(getUserPhotoCreateQuery()); // 2021-03-25
         db.execSQL(getDrivingLicenseImageCreateQuery());
+        db.execSQL(getVehicleRegistrationImageCreateQuery());
 	}
 
 	private String getUserInfoCreateQuery()
@@ -89,13 +90,14 @@ public class BluelinkDatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Mond 추가
-//    private String addDringLicenseImageCpwColumn(){
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("ALTER TABLE " + TABLE_DRIVING_LICENSE_IMAGE + " ADD COLUMN ");
-//        sb.append(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT_CPW + ", ");
-//        sb.append(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK_CPW);
-//        return sb.toString();
-//    }
+    private String getVehicleRegistrationImageCreateQuery(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("CREATE TABLE IF NOT EXISTS " + TABLE_VEHICLE_REGISTRATION_IMAGE);
+        sb.append( " ('_index' INTEGER PRIMARY KEY AUTOINCREMENT ,");
+        sb.append(" '" + BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_FRONT + "' TEXT NOT NULL,");
+        sb.append(" '" + BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_BACK + "' TEXT NOT NULL);");
+        return sb.toString();
+    }
 
     @Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

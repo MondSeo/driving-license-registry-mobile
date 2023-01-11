@@ -207,15 +207,6 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                             setVehicleRegistrationImage(VehicleRegistrationImageBack, false);
                         }
                     }
-//                    if (VehicleRegistrationImage != null) {
-//                        VehicleRegistrationImage.recycle();
-//                        VehicleRegistrationImage = null;
-//                    }
-//                    VehicleRegistrationImage = PictureUtils.getSampleSizeBitmap(selectedImagePath, 4);
-//                    VehicleRegistrationImage = PictureUtils.rotate(VehicleRegistrationImage, PictureUtils.exifOrientationToDegrees(selectedImagePath));
-//                    if (VehicleRegistrationImage != null) {
-//                        setVehicleRegistrationImage(VehicleRegistrationImage, isFront);
-//                    }
                 }
                 break;
         }

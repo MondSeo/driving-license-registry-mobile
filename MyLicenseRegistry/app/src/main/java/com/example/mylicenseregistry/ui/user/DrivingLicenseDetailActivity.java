@@ -61,9 +61,6 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
         String frontImagePath = (bundle.getString("FrontImagePath")) + "/_LicenseFront.jpg";
         String backImagePath = (bundle.getString("BackImagePath")) + "/_LicenseBack.jpg";
         int position = bundle.getInt("Position");
-//        File file = new File(frontImagePath);
-//        FileInputStream frontFis = openFileInput("file",frontImagePath);
-
         Bitmap frontBitmap = PictureUtils.getSampleSizeBitmap(frontImagePath, 4);
         Bitmap backBitmap = PictureUtils.getSampleSizeBitmap(backImagePath, 4);
 
@@ -122,13 +119,13 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
     private void setImageResources(Bitmap drivingLicenseFrontImage, Bitmap drivingLicenseBackImage) {
         Glide.with(mContext).load(drivingLicenseFrontImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerInside()
+                .fitCenter()
                 .skipMemoryCache(true)
                 .into(img_DrivingLicenseDetailActivity_Front);
 
         Glide.with(mContext).load(drivingLicenseBackImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerInside()
+                .fitCenter()
                 .skipMemoryCache(true)
                 .into(img_DrivingLicenseDetailActivity_Back);
     }

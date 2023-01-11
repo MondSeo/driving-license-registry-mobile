@@ -130,7 +130,6 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
                 Bitmap drivingLicenseBackDetailImage =  Util.getBitmapFromByteArray(
                         Util.base64Decode(mDataList.get(position).getBackDrivingLicenseBitmap()));
 
-                Uri frontImagePathUri, backImagePathUri;
                 drivingLicenseFrontImageFileName = "licensefront";
                 drivingLicenseBackImageFileName = "licenseback";
                     File frontSavePath = new File(tempDirectoryStr, drivingLicenseFrontImageFileName);

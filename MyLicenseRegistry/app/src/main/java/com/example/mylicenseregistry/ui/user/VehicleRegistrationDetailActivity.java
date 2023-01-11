@@ -60,8 +60,6 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
         String frontImagePath = (bundle.getString("FrontImagePath")) + "/_LicenseFront.jpg";
         String backImagePath = (bundle.getString("BackImagePath")) + "/_LicenseBack.jpg";
         int position = bundle.getInt("Position");
-//        File file = new File(frontImagePath);
-//        FileInputStream frontFis = openFileInput("file",frontImagePath);
 
         Bitmap frontBitmap = PictureUtils.getSampleSizeBitmap(frontImagePath, 4);
         Bitmap backBitmap = PictureUtils.getSampleSizeBitmap(backImagePath, 4);
@@ -121,13 +119,13 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
     private void setImageResources(Bitmap VehicleRegistrationFrontImage, Bitmap VehicleRegistrationBackImage) {
         Glide.with(mContext).load(VehicleRegistrationFrontImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerInside()
+                .fitCenter()
                 .skipMemoryCache(true)
                 .into(img_VehicleRegistrationDetailActivity_Front);
 
         Glide.with(mContext).load(VehicleRegistrationBackImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerInside()
+                .fitCenter()
                 .skipMemoryCache(true)
                 .into(img_VehicleRegistrationDetailActivity_Back);
     }

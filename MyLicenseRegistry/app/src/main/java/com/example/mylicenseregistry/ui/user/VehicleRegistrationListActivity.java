@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,6 +59,33 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+//        mAdapter.notifyDataSetChanged();
+        setVehicleRegistrationList();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_IMAGE){
+            if (resultCode == RESULT_OK) {
+                setVehicleRegistrationList();
+            }
+        }
+        if(requestCode == REQUEST_CODE_IMAGE_DETAIL){
+            if (resultCode == RESULT_OK){
+                int position = data.getIntExtra("Position",0);
+                deleteVehicleRegistrationImage(position);
+                mDataList.remove(position);
+                mAdapter.notifyItemRemoved(position);
+            }
+        }
+
+    }
+
+
+    @Override
     public void initLayout() {
         setTitleText(getString(R.string.VehicleRegistrationCertificate_Text));
         btn_VehicleRegistrationListActivity_ListAdd = findViewById(R.id.btn_VehicleRegistrationListActivity_ListAdd);
@@ -101,7 +129,6 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
                 Bitmap VehicleRegistrationBackDetailImage =  Util.getBitmapFromByteArray(
                         Util.base64Decode(mDataList.get(position).getBackVehicleRegistrationBitmap()));
 
-                Uri frontImagePathUri, backImagePathUri;
                 VehicleRegistrationFrontImageFileName = "licensefront";
                 VehicleRegistrationBackImageFileName = "licenseback";
                 File frontSavePath = new File(tempDirectoryStr, VehicleRegistrationFrontImageFileName);
@@ -128,9 +155,6 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
                     e.printStackTrace();
                 }
 
-
-//                byte[] encodedFrontImage = Util.base64Decode(mDataList.get(position).getmFrontVehicleRegistrationBitmap());
-//                byte[] encodedBackImage = Util.base64Decode(mDataList.get(position).getmBackVehicleRegistrationBitmap());
                 intent.putExtra("Position", position);
                 intent.putExtra("FrontImagePath",tempDirectoryStr + VehicleRegistrationFrontImageFileName);
                 intent.putExtra("BackImagePath",tempDirectoryStr + VehicleRegistrationBackImageFileName);
