@@ -90,8 +90,8 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.btn_VehicleRegistrationDetailActivity_Save:
-                        saveImageToGallery(mContext,  VehicleRegistrationFrontImage,"VehicleRegistration", position);
-                        saveImageToGallery(mContext,  VehicleRegistrationBackImage,"VehicleRegistration", position);
+                        saveImageToGallery(mContext,  VehicleRegistrationFrontImage,"BlueLink_VehicleRegistration", position);
+                        saveImageToGallery(mContext,  VehicleRegistrationBackImage,"BlueLink_VehicleRegistration", position);
                         Util.confirmDialog(mContext, getString(R.string.Common_CustomDialog_Save_Text));
 
                         break;
@@ -136,11 +136,9 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
     }
 
 
-
-
-    private boolean saveImageToGallery(Context context, Bitmap bitmap, String path, int position) {
+    private void saveImageToGallery(Context context, Bitmap bitmap, String path, int position) {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED == state) {
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
 
             String rootPath =
                     Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
@@ -169,13 +167,11 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
                         )
                 );
 
-                return true;
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return false;
     }
 
 }
