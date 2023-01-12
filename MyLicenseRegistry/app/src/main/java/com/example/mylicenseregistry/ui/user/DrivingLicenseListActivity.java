@@ -1,11 +1,7 @@
 package com.example.mylicenseregistry.ui.user;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -19,12 +15,8 @@ import com.example.mylicenseregistry.datadto.BluelinkModel;
 import com.example.mylicenseregistry.datadto.BluelinkSettings;
 import com.example.mylicenseregistry.datadto.DrivingLicenseImage;
 import com.example.mylicenseregistry.ui.BaseActivity_CommonGNB;
-import com.example.mylicenseregistry.util.Util;
 import com.example.mylicenseregistry.widget.ContentButton;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -36,10 +28,8 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
     RecyclerView rcl_DrivingLicenseListActivity;
 
     private ArrayList<DrivingLicenseImage> mDataList = new ArrayList<DrivingLicenseImage>();
-
     public static final int REQUEST_CODE_IMAGE = 30001;
     public static final int REQUEST_CODE_IMAGE_DETAIL = 30002;
-    private String TAG ="ㅇ";
 
 
     @Override
@@ -47,18 +37,12 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving_license_list);
         initLayout();
+        setDrivingLicenseList();
     }
 
     @Override
     public void getInitializeParameter() {
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        mAdapter.notifyDataSetChanged();
-        setDrivingLicenseList();
     }
 
     @Override
@@ -94,7 +78,6 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
                 startActivityForResult(DrivingLicenseRegisterActivity.class, REQUEST_CODE_IMAGE);
             }
         };
-
 
         btn_DrivingLicenseListActivity_ListAdd.setOnClickListener(clickListener);
         rel_DrivingLicenseListActivity_EmptyList.setOnClickListener(clickListener);
@@ -144,23 +127,6 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
                         item.getString(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK)));
             }
         }
-    }
-
-
-
-    private boolean deleteTempFile(File path) {
-        if (!path.isDirectory()) {
-            return false;
-        }
-        File[] files = path.listFiles();
-        for (File file : files) {
-            if (file.isDirectory()) {
-                deleteTempFile(file);
-            } else {
-                file.delete();
-            }
-        }
-        return path.delete();
     }
 
     private void deleteDrivingLicenseImage(int position)

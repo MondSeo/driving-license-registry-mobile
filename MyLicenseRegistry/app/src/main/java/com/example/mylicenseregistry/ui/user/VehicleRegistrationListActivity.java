@@ -1,11 +1,7 @@
 package com.example.mylicenseregistry.ui.user;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -19,12 +15,9 @@ import com.example.mylicenseregistry.datadto.BluelinkModel;
 import com.example.mylicenseregistry.datadto.BluelinkSettings;
 import com.example.mylicenseregistry.datadto.VehicleRegistrationImage;
 import com.example.mylicenseregistry.ui.BaseActivity_CommonGNB;
-import com.example.mylicenseregistry.util.Util;
 import com.example.mylicenseregistry.widget.ContentButton;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
@@ -38,7 +31,6 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
 
     public static final int REQUEST_CODE_IMAGE = 30001;
     public static final int REQUEST_CODE_IMAGE_DETAIL = 30002;
-    private String TAG ="ㅇ";
 
 
     @Override
@@ -46,18 +38,12 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_registration_list);
         initLayout();
+        setVehicleRegistrationList();
     }
 
     @Override
     public void getInitializeParameter() {
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-//        mAdapter.notifyDataSetChanged();
-        setVehicleRegistrationList();
     }
 
     @Override

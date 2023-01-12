@@ -14,6 +14,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.mylicenseregistry.R;
 import com.example.mylicenseregistry.datadto.DrivingLicenseImage;
 import com.example.mylicenseregistry.util.Util;
@@ -69,12 +72,14 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
         Glide.with(mContext).load(drivingLicenseFrontImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
+                .transform(new CenterCrop(), new RoundedCorners(36))
                 .skipMemoryCache(true)
                 .into(holder.drivingLicenseFrontImage);
 
         Glide.with(mContext).load(drivingLicenseBackImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
+                .transform(new CenterCrop(), new RoundedCorners(36))
                 .skipMemoryCache(true)
                 .into(holder.drivingLicenseBackImage);
 
@@ -87,10 +92,6 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
                 }
             }
         });
-
-
-//        holder.drivingLicenseFrontImage
-
 
     }
 

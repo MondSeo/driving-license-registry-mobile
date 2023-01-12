@@ -26,6 +26,8 @@ import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.mylicenseregistry.R;
 import com.example.mylicenseregistry.constant.AppConfig;
 import com.example.mylicenseregistry.constant.PrefKeys;
@@ -251,17 +253,6 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             );
         }
     }
-//
-//    private void getImageFromLocal() {
-//        String profileImage = DBUtils.getProfileImage(mContext);
-//        if (profileImage == null) {
-//            Bitmap userImageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ble_user_default);
-//            setUserProfileImage(userImageBitmap);
-//        } else {
-//            drivingLicenseImage = Util.getBitmapFromByteArray(Util.base64Decode(profileImage));
-//            setUserProfileImage(drivingLicenseImage);
-//        }
-//    }
 
     private void popupDrivingLicenseSelect(Boolean isFront) {
         tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
@@ -390,7 +381,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                 img_DrivingLicenseRegisterActivity_UploadedImage_Front.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .fitCenter()
+                        .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
                         .into(img_DrivingLicenseRegisterActivity_UploadedImage_Front);
 
@@ -399,12 +390,11 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                 img_DrivingLicenseRegisterActivity_UploadedImage_Back.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .fitCenter()
+                        .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
                         .into(img_DrivingLicenseRegisterActivity_UploadedImage_Back);
             }
         }
-
     }
 
     private String getPath(Uri uri) {
@@ -434,6 +424,5 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         }
         return getString(R.string.Common_CustomDialog_ContentButton_LicenseBack_Text);
     }
-
 
 }

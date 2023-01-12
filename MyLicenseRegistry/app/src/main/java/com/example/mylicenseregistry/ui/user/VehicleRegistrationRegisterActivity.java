@@ -26,6 +26,8 @@ import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.mylicenseregistry.R;
 import com.example.mylicenseregistry.constant.AppConfig;
 import com.example.mylicenseregistry.constant.PrefKeys;
@@ -381,7 +383,7 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                 img_VehicleRegistrationRegisterActivity_UploadedImage_Front.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .fitCenter()
+                        .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
                         .into(img_VehicleRegistrationRegisterActivity_UploadedImage_Front);
 
@@ -390,7 +392,7 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                 img_VehicleRegistrationRegisterActivity_UploadedImage_Back.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                        .fitCenter()
+                        .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
                         .into(img_VehicleRegistrationRegisterActivity_UploadedImage_Back);
             }

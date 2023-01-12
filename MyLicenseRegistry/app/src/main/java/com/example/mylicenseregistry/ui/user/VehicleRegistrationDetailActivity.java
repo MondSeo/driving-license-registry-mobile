@@ -1,7 +1,5 @@
 package com.example.mylicenseregistry.ui.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,13 +12,13 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.mylicenseregistry.R;
 import com.example.mylicenseregistry.datadto.BluelinkModel;
 import com.example.mylicenseregistry.datadto.BluelinkSettings;
-
 import com.example.mylicenseregistry.datadto.VehicleRegistrationImage;
 import com.example.mylicenseregistry.ui.BaseActivity_CommonGNB;
-import com.example.mylicenseregistry.util.PictureUtils;
 import com.example.mylicenseregistry.util.Util;
 import com.example.mylicenseregistry.widget.ContentButton;
 
@@ -78,7 +76,7 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
 
             }
         }
-        
+
         setImageResources(VehicleRegistrationFrontImage, VehicleRegistrationBackImage);
 
         View.OnClickListener clickListener = new View.OnClickListener() {
@@ -115,13 +113,13 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
     private void setImageResources(Bitmap VehicleRegistrationFrontImage, Bitmap VehicleRegistrationBackImage) {
         Glide.with(mContext).load(VehicleRegistrationFrontImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .fitCenter()
+                .transform(new CenterCrop(), new RoundedCorners(36))
                 .skipMemoryCache(true)
                 .into(img_VehicleRegistrationDetailActivity_Front);
 
         Glide.with(mContext).load(VehicleRegistrationBackImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .fitCenter()
+                .transform(new CenterCrop(), new RoundedCorners(36))
                 .skipMemoryCache(true)
                 .into(img_VehicleRegistrationDetailActivity_Back);
     }

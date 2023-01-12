@@ -235,7 +235,7 @@ public class BluelinkModel {
                 String frontImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_FRONT));
                 String backImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_BACK));
 
-                bundle.putInt(BluelinkSettings.DrivingLicenseImage.INDEX,numIndex);
+                bundle.putInt(BluelinkSettings.VehicleRegistrationImage.INDEX,numIndex);
                 bundle.putString(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_FRONT,frontImage);
                 bundle.putString(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_BACK,backImage);
                 list.add(bundle);
@@ -249,35 +249,6 @@ public class BluelinkModel {
             }
         }
         return list;
-
-
-    }
-
-    public boolean deleteVehicleRegistrationImage(int index)
-    {
-        String sql = null;
-
-        try
-        {
-            sql = "DELETE FROM " + BluelinkDatabaseHelper.TABLE_VEHICLE_REGISTRATION_IMAGE + " WHERE " + BluelinkSettings.DrivingLicenseImage.INDEX + "=" + index + ";";
-        }
-        catch (Exception e)
-        {
-            // DebugPrint.printDebug(TAG, e.getMessage());
-            return false;
-        }
-
-        try
-        {
-            mDB.execSQL(sql);
-        }
-        catch (SQLException e)
-        {
-            // DebugPrint.printError(TAG, e.getMessage());
-            return false;
-        }
-
-        return true;
     }
 
     public ArrayList<Bundle> selectPositionVehicleRegistrationImage(int index){
@@ -317,6 +288,35 @@ public class BluelinkModel {
         }
         return list;
     }
+
+    public boolean deleteVehicleRegistrationImage(int index)
+    {
+        String sql = null;
+
+        try
+        {
+            sql = "DELETE FROM " + BluelinkDatabaseHelper.TABLE_VEHICLE_REGISTRATION_IMAGE + " WHERE " + BluelinkSettings.DrivingLicenseImage.INDEX + "=" + index + ";";
+        }
+        catch (Exception e)
+        {
+            // DebugPrint.printDebug(TAG, e.getMessage());
+            return false;
+        }
+
+        try
+        {
+            mDB.execSQL(sql);
+        }
+        catch (SQLException e)
+        {
+            // DebugPrint.printError(TAG, e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+
 
 
 

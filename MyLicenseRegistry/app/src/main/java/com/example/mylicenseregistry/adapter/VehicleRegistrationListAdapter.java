@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.mylicenseregistry.R;
 import com.example.mylicenseregistry.datadto.VehicleRegistrationImage;
 import com.example.mylicenseregistry.datadto.VehicleRegistrationImage;
@@ -67,12 +70,14 @@ public class VehicleRegistrationListAdapter extends RecyclerView.Adapter<Vehicle
         Glide.with(mContext).load(VehicleRegistrationFrontImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
+                .transform(new CenterCrop(), new RoundedCorners(36))
                 .skipMemoryCache(true)
                 .into(holder.vehicleRegistrationFrontImage);
 
         Glide.with(mContext).load(VehicleRegistrationBackImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .centerCrop()
+                .transform(new CenterCrop(), new RoundedCorners(36))
                 .skipMemoryCache(true)
                 .into(holder.vehicleRegistrationBackImage);
 

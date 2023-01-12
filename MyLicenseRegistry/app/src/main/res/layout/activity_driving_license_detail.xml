@@ -8,9 +8,9 @@
         android:id="@+id/rel_DrivingLicenseDetailActivity_Front"
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="15dp"
         android:orientation="vertical">
 
         <ImageView
@@ -27,9 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:layout_below="@+id/rel_DrivingLicenseDetailActivity_Front"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="15dp"
         android:orientation="vertical">
 
         <ImageView
@@ -50,7 +50,7 @@
             android:id="@+id/btn_DrivingLicenseDetailActivity_Save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="15dp"
             android:layout_weight="1"
             app:button_style="B"
             app:text="@string/Common_Save" />
@@ -59,7 +59,7 @@
             android:id="@+id/btn_DrivingLicenseDetailActivity_Delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="15dp"
             android:layout_weight="1"
             app:button_style="B"
             app:text="@string/Common_Delete" />

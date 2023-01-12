@@ -13,19 +13,18 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.mylicenseregistry.R;
 import com.example.mylicenseregistry.datadto.BluelinkModel;
 import com.example.mylicenseregistry.datadto.BluelinkSettings;
 import com.example.mylicenseregistry.datadto.DrivingLicenseImage;
 import com.example.mylicenseregistry.ui.BaseActivity_CommonGNB;
-import com.example.mylicenseregistry.util.PictureUtils;
 import com.example.mylicenseregistry.util.Util;
 import com.example.mylicenseregistry.widget.ContentButton;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
@@ -61,7 +60,6 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
         btn_DrivingLicenseDetailActivity_Delete = findViewById(R.id.btn_DrivingLicenseDetailActivity_Delete);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
         int position = bundle.getInt("Position");
 
         mDataList = new ArrayList<>();
@@ -114,13 +112,13 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
     private void setImageResources(Bitmap drivingLicenseFrontImage, Bitmap drivingLicenseBackImage) {
         Glide.with(mContext).load(drivingLicenseFrontImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .fitCenter()
+                .transform(new CenterCrop(), new RoundedCorners(36))
                 .skipMemoryCache(true)
                 .into(img_DrivingLicenseDetailActivity_Front);
 
         Glide.with(mContext).load(drivingLicenseBackImage)
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .fitCenter()
+                .transform(new CenterCrop(), new RoundedCorners(36))
                 .skipMemoryCache(true)
                 .into(img_DrivingLicenseDetailActivity_Back);
     }
@@ -129,9 +127,6 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
     public void initProcess() {
 
     }
-
-
-
 
     private void saveImageToGallery(Context context, Bitmap bitmap, String path, int position) {
         String state = Environment.getExternalStorageState();
