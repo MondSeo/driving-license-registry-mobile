@@ -50,7 +50,9 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_CODE_IMAGE){
             if (resultCode == RESULT_OK) {
+                int position = data.getIntExtra("Position",0);
                 setDrivingLicenseList();
+                mAdapter.notifyItemChanged(position);
             }
         }
         if(requestCode == REQUEST_CODE_IMAGE_DETAIL){
@@ -99,7 +101,7 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
             @Override
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(mContext, DrivingLicenseDetailActivity.class);
-                intent.putExtra("Position", position);
+                intent.putExtra("Position", position + 1);
                 startActivityForResult(intent,REQUEST_CODE_IMAGE_DETAIL);
             }
         });

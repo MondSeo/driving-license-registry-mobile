@@ -43,7 +43,6 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving_license_detail);
         initLayout();
-        initProcess();
     }
 
     @Override
@@ -65,7 +64,7 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
         mDataList = new ArrayList<>();
         ArrayList<Bundle> dbArrayList = null;
 
-        dbArrayList = BluelinkModel.getInst(mContext).selectPositionDrivingLicenseImage(position + 1);
+        dbArrayList = BluelinkModel.getInst(mContext).selectPositionDrivingLicenseImage(position);
         if (dbArrayList != null) {
             for (Bundle item : dbArrayList) {
                 String frontBitmapStr = item.getString(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT);
@@ -93,12 +92,10 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
                             @Override
                             public void onClick(View v) {
                                 setResult(RESULT_OK, intent);
-                                intent.putExtra("Position",position);
-                                Log.d(TAG,position + "되었습니다.");
+                                intent.putExtra("Position",position - 1);
                                 finish();
                             }
                         });
-
                     break;
                 }
             }
@@ -110,17 +107,19 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
     }
 
     private void setImageResources(Bitmap drivingLicenseFrontImage, Bitmap drivingLicenseBackImage) {
-        Glide.with(mContext).load(drivingLicenseFrontImage)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .transform(new CenterCrop(), new RoundedCorners(36))
-                .skipMemoryCache(true)
-                .into(img_DrivingLicenseDetailActivity_Front);
+        if (Util.isValidContextForGlide(mContext)) {
+            Glide.with(mContext).load(drivingLicenseFrontImage)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .transform(new CenterCrop(), new RoundedCorners(36))
+                    .skipMemoryCache(true)
+                    .into(img_DrivingLicenseDetailActivity_Front);
 
-        Glide.with(mContext).load(drivingLicenseBackImage)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .transform(new CenterCrop(), new RoundedCorners(36))
-                .skipMemoryCache(true)
-                .into(img_DrivingLicenseDetailActivity_Back);
+            Glide.with(mContext).load(drivingLicenseBackImage)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .transform(new CenterCrop(), new RoundedCorners(36))
+                    .skipMemoryCache(true)
+                    .into(img_DrivingLicenseDetailActivity_Back);
+        }
     }
 
     @Override

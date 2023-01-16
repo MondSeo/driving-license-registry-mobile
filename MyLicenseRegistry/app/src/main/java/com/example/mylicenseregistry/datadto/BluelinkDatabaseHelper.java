@@ -83,7 +83,7 @@ public class BluelinkDatabaseHelper extends SQLiteOpenHelper {
     private String getDrivingLicenseImageCreateQuery(){
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE IF NOT EXISTS " + TABLE_DRIVING_LICENSE_IMAGE);
-        sb.append( " ('_index' INTEGER PRIMARY KEY AUTOINCREMENT ,");
+        sb.append( " ('_index' INTEGER PRIMARY KEY ,");
         sb.append(" '" + BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT + "' TEXT NOT NULL,");
         sb.append(" '" + BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK + "' TEXT NOT NULL);");
         return sb.toString();
@@ -93,7 +93,7 @@ public class BluelinkDatabaseHelper extends SQLiteOpenHelper {
     private String getVehicleRegistrationImageCreateQuery(){
         StringBuilder sb = new StringBuilder();
         sb.append("CREATE TABLE IF NOT EXISTS " + TABLE_VEHICLE_REGISTRATION_IMAGE);
-        sb.append( " ('_index' INTEGER PRIMARY KEY AUTOINCREMENT ,");
+        sb.append( " ('_index' INTEGER PRIMARY KEY ,");
         sb.append(" '" + BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_FRONT + "' TEXT NOT NULL,");
         sb.append(" '" + BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_BACK + "' TEXT NOT NULL);");
         return sb.toString();

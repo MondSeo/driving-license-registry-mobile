@@ -101,7 +101,7 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
             @Override
             public void onItemClick(View v, int position) {
                 Intent intent = new Intent(mContext, VehicleRegistrationDetailActivity.class);
-                intent.putExtra("Position", position);
+                intent.putExtra("Position", position + 1);
                 startActivityForResult(intent,REQUEST_CODE_IMAGE_DETAIL);
             }
         });
@@ -129,23 +129,6 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
                         item.getString(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_BACK)));
             }
         }
-    }
-
-
-
-    private boolean deleteTempFile(File path) {
-        if (!path.isDirectory()) {
-            return false;
-        }
-        File[] files = path.listFiles();
-        for (File file : files) {
-            if (file.isDirectory()) {
-                deleteTempFile(file);
-            } else {
-                file.delete();
-            }
-        }
-        return path.delete();
     }
 
     private void deleteVehicleRegistrationImage(int position)

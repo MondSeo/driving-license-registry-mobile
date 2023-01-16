@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
@@ -38,6 +39,7 @@ import com.example.mylicenseregistry.util.DBUtils;
 import com.example.mylicenseregistry.util.PermissionUtil;
 import com.example.mylicenseregistry.util.PictureUtils;
 import com.example.mylicenseregistry.util.Util;
+import com.example.mylicenseregistry.widget.ContentButton;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -59,7 +61,6 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
     String tempDirectoryStr;
 
     private String UserID;
-    private String captureUri;
     byte[] frontBitmapByteArray;
     byte[] backBitmapByteArray;
 
@@ -116,9 +117,7 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
     }
 
     @Override
-    public void getInitializeParameter() {
-
-    }
+    public void getInitializeParameter() {}
 
     @Override
     protected void onResume() {
@@ -145,8 +144,8 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String strSurface = preferenceUtil.getPreference(PrefKeys.KEY_DRIVING_LICENSE_SURFACE, "true");
-        boolean isFront = Boolean.valueOf(strSurface);
+        String strSurface = preferenceUtil.getPreference(PrefKeys.KEY_LICENSE_SURFACE, "true");
+        boolean isFront = Boolean.parseBoolean(strSurface);
         switch (requestCode) {
             case REQUEST_CODE_CAMERA:
                 if (resultCode == RESULT_OK || resultCode == RESULT_CANCELED) {
@@ -166,7 +165,6 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                             VehicleRegistrationImageFront = bitmap;
                             VehicleRegistrationImageFront = PictureUtils.rotate(VehicleRegistrationImageFront, PictureUtils.exifOrientationToDegrees(captureUri));
                             setVehicleRegistrationImage(VehicleRegistrationImageFront, true);
-
                         }
                     } else {
                         if (bitmap != null) {
@@ -177,7 +175,6 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                             VehicleRegistrationImageBack = bitmap;
                             VehicleRegistrationImageBack = PictureUtils.rotate(VehicleRegistrationImageBack, PictureUtils.exifOrientationToDegrees(captureUri));
                             setVehicleRegistrationImage(VehicleRegistrationImageBack, false);
-
                         }
                     }
 
@@ -219,19 +216,31 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
         setTitleText(getString(R.string.VehicleRegistrationCertificate_Text));
         RelativeLayout rel_VehicleRegistrationRegisterActivity_FrontImageAdd = findViewById(R.id.rel_VehicleRegistrationRegisterActivity_Front);
         RelativeLayout rel_VehicleRegistrationRegisterActivity_BackImageAdd = findViewById(R.id.rel_VehicleRegistrationRegisterActivity_Back);
-//        RecyclerView mVehicleRegistrationListRecyclerView = findViewById(R.id.driving_License_Register_RecyclerView);
         img_VehicleRegistrationRegisterActivity_UploadedImage_Front = findViewById(R.id.img_VehicleRegistrationRegisterActivity_UploadedImage_Front);
         img_VehicleRegistrationRegisterActivity_UploadedImage_Back = findViewById(R.id.img_VehicleRegistrationRegisterActivity_UploadedImage_Back);
         lin_VehicleRegistrationRegisterActivity_Front = findViewById(R.id.lin_VehicleRegistrationRegisterActivity_Front);
         lin_VehicleRegistrationRegisterActivity_Back = findViewById(R.id.lin_VehicleRegistrationRegisterActivity_Back);
         rel_VehicleRegistrationRegisterActivity_FrontImageAdd.setOnClickListener(clickListener);
         rel_VehicleRegistrationRegisterActivity_BackImageAdd.setOnClickListener(clickListener);
-
     }
 
     @Override
-    public void initProcess() {
+    public void initProcess() {}
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        String strSurface = preferenceUtil.getPreference(PrefKeys.KEY_LICENSE_SURFACE, "true");
+        boolean isFront = Boolean.parseBoolean(strSurface);
+        if(requestCode == PERMISSION_CHECK_CAMERA_ID) {
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            }
+        } else if(requestCode == PERMISSION_CHECK_EXTERNAL_STORAGE_ID) {
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                popupVehicleRegistrationSelect(isFront);
+            }
+
+        }
     }
 
     private void saveLicenseImageToLocal(Bitmap frontBitmap, Bitmap backBitmap) {
@@ -244,46 +253,35 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
             );
         }
     }
-//
-//    private void getImageFromLocal() {
-//        String profileImage = DBUtils.getProfileImage(mContext);
-//        if (profileImage == null) {
-//            Bitmap userImageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ble_user_default);
-//            setUserProfileImage(userImageBitmap);
-//        } else {
-//            VehicleRegistrationImage = Util.getBitmapFromByteArray(Util.base64Decode(profileImage));
-//            setUserProfileImage(VehicleRegistrationImage);
-//        }
-//    }
 
     private void popupVehicleRegistrationSelect(Boolean isFront) {
         tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
+        preferenceUtil.setPreference(PrefKeys.KEY_LICENSE_SURFACE, isFront);
         File path = new File(tempDirectoryStr);
         deleteTempFile(path);
         Util.customViewDialog(this, getString(R.string.VehicleRegistrationCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_license_select, new CustomDialog.OnCustomInitialize() {
-            CustomDialog dialog;
-
             @Override
             public void onInitialize(View contentView, CustomDialog dialog) {
-                this.dialog = dialog;
-                contentView.findViewById(R.id.btn_driving_license_take_photo).setOnClickListener(popupListener);
-                contentView.findViewById(R.id.btn_driving_license_find_gallery).setOnClickListener(popupListener);
+                ContentButton btn_CustomDialog_Camera = contentView.findViewById(R.id.btn_CustomDialog_LicenseTakePhoto);
+                ContentButton btn_CustomDialog_Gallery = contentView.findViewById(R.id.btn_CustomDialog_LicenseFindGallery);
+                btn_CustomDialog_Camera.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        openCamera();
+                        dialog.dismiss();
+                    }
+                });
+                btn_CustomDialog_Gallery.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        openGallery();
+                        dialog.dismiss();
+                    }
+                });
+
             }
 
-            private View.OnClickListener popupListener = new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                    switch (v.getId()) {
-                        case R.id.btn_driving_license_take_photo:
-                            openCamera(isFront);
-                            break;
-                        case R.id.btn_driving_license_find_gallery:
-                            openGallery(isFront);
-                            break;
-                    }
-                }
-            };
+
         }, getString(R.string.Common_Close), null, false);
     }
 
@@ -306,26 +304,23 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
         capturedImagePath = createPicturePath(mContext);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra("return-data", true);
-        Uri capturePath;
+        Uri uri;
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            capturePath = Uri.fromFile(new File(capturedImagePath, capturedImageFileName));
-            captureUri = capturePath.getPath();
+            uri = Uri.fromFile(new File(capturedImagePath, capturedImageFileName));
         } else {
             File path = new File(capturedImagePath, capturedImageFileName);
-            capturePath = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", path);
-            captureUri = path.getAbsolutePath();
+            uri = FileProvider.getUriForFile(mContext, mContext.getPackageName() + ".fileprovider", path);
         }
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, capturePath);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
         return intent;
     }
 
-    private void openCamera(boolean isFront) {
+    private void openCamera() {
         if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
                     || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(VehicleRegistrationRegisterActivity.this, Manifest.permission.CAMERA))) {
                 ActivityCompat.requestPermissions(VehicleRegistrationRegisterActivity.this, CHECK_CAMERA_PERMISSIONS, PERMISSION_CHECK_CAMERA_ID);
-
             } else {
                 String permissions = getString(R.string.permission_camera);
                 Util.selectDialog(mContext,
@@ -344,14 +339,12 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                         });
             }
         } else {
-            preferenceUtil.setPreference(PrefKeys.KEY_DRIVING_LICENSE_SURFACE, isFront);
             Intent intent = getTakePictureIntent();
             startActivityForResult(intent, REQUEST_CODE_CAMERA);
         }
     }
 
-    private void openGallery(boolean isFront) {
-        preferenceUtil.setPreference(PrefKeys.KEY_DRIVING_LICENSE_SURFACE, isFront);
+    private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
         intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -360,7 +353,7 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
 
     private String createPicturePath(Context context) {
         String newImgPath = null;
-        capturedImageFileName = UserID + "_DLicense.jpg";
+        capturedImageFileName = "license.jpg";
         try {
             FileOutputStream fos = context.openFileOutput(capturedImageFileName, Context.MODE_PRIVATE);
             fos.close();
@@ -373,10 +366,6 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
     }
 
     private void setVehicleRegistrationImage(Bitmap imageBitmap, Boolean isFront) {
-//        RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
-//        roundDrawable.setCircular(true);
-//        img_UserProfileActivity_UserImage.setImageDrawable(roundDrawable);
-
         if (Util.isValidContextForGlide(mContext)) {
             if (isFront) {
                 lin_VehicleRegistrationRegisterActivity_Front.setVisibility(View.GONE);
@@ -386,7 +375,6 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                         .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
                         .into(img_VehicleRegistrationRegisterActivity_UploadedImage_Front);
-
             } else {
                 lin_VehicleRegistrationRegisterActivity_Back.setVisibility(View.GONE);
                 img_VehicleRegistrationRegisterActivity_UploadedImage_Back.setVisibility(View.VISIBLE);
@@ -397,11 +385,9 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                         .into(img_VehicleRegistrationRegisterActivity_UploadedImage_Back);
             }
         }
-
     }
 
     private String getPath(Uri uri) {
-
         if ("content".equalsIgnoreCase(uri.getScheme())) {
             String[] projection = {"_data"};
             Cursor cursor = null;

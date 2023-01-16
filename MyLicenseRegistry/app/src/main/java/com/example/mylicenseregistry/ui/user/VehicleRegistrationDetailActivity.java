@@ -43,7 +43,6 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_registration_detail);
         initLayout();
-        initProcess();
     }
 
     @Override
@@ -60,13 +59,12 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
         btn_VehicleRegistrationDetailActivity_Delete = findViewById(R.id.btn_VehicleRegistrationDetailActivity_Delete);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
           int position = bundle.getInt("Position");
 
         mDataList = new ArrayList<>();
         ArrayList<Bundle> dbArrayList = null;
 
-        dbArrayList = BluelinkModel.getInst(mContext).selectPositionVehicleRegistrationImage(position + 1);
+        dbArrayList = BluelinkModel.getInst(mContext).selectPositionVehicleRegistrationImage(position);
         if (dbArrayList != null) {
             for (Bundle item : dbArrayList) {
                 String frontBitmapStr = item.getString(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_FRONT);
@@ -94,8 +92,7 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
                             @Override
                             public void onClick(View v) {
                                 setResult(RESULT_OK, intent);
-                                intent.putExtra("Position",position);
-                                Log.d(TAG,position + "되었습니다.");
+                                intent.putExtra("Position",position - 1);
                                 finish();
                             }
                         });
@@ -111,17 +108,19 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
     }
 
     private void setImageResources(Bitmap VehicleRegistrationFrontImage, Bitmap VehicleRegistrationBackImage) {
-        Glide.with(mContext).load(VehicleRegistrationFrontImage)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .transform(new CenterCrop(), new RoundedCorners(36))
-                .skipMemoryCache(true)
-                .into(img_VehicleRegistrationDetailActivity_Front);
+        if (Util.isValidContextForGlide(mContext)) {
+            Glide.with(mContext).load(VehicleRegistrationFrontImage)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .transform(new CenterCrop(), new RoundedCorners(36))
+                    .skipMemoryCache(true)
+                    .into(img_VehicleRegistrationDetailActivity_Front);
 
-        Glide.with(mContext).load(VehicleRegistrationBackImage)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .transform(new CenterCrop(), new RoundedCorners(36))
-                .skipMemoryCache(true)
-                .into(img_VehicleRegistrationDetailActivity_Back);
+            Glide.with(mContext).load(VehicleRegistrationBackImage)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .transform(new CenterCrop(), new RoundedCorners(36))
+                    .skipMemoryCache(true)
+                    .into(img_VehicleRegistrationDetailActivity_Back);
+        }
     }
 
     @Override

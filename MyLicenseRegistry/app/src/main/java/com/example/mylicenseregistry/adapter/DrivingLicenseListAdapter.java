@@ -69,19 +69,21 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
         String backImage = item.getBackDrivingLicenseBitmap();
         Bitmap drivingLicenseBackImage = Util.getBitmapFromByteArray(Util.base64Decode(backImage));
 
-        Glide.with(mContext).load(drivingLicenseFrontImage)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerCrop()
-                .transform(new CenterCrop(), new RoundedCorners(36))
-                .skipMemoryCache(true)
-                .into(holder.drivingLicenseFrontImage);
+        if (Util.isValidContextForGlide(mContext)) {
+            Glide.with(mContext).load(drivingLicenseFrontImage)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .centerCrop()
+                    .transform(new CenterCrop(), new RoundedCorners(36))
+                    .skipMemoryCache(true)
+                    .into(holder.drivingLicenseFrontImage);
 
-        Glide.with(mContext).load(drivingLicenseBackImage)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerCrop()
-                .transform(new CenterCrop(), new RoundedCorners(36))
-                .skipMemoryCache(true)
-                .into(holder.drivingLicenseBackImage);
+            Glide.with(mContext).load(drivingLicenseBackImage)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .centerCrop()
+                    .transform(new CenterCrop(), new RoundedCorners(36))
+                    .skipMemoryCache(true)
+                    .into(holder.drivingLicenseBackImage);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

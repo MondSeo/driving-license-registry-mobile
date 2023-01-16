@@ -67,19 +67,21 @@ public class VehicleRegistrationListAdapter extends RecyclerView.Adapter<Vehicle
         String backImage = item.getBackVehicleRegistrationBitmap();
         Bitmap VehicleRegistrationBackImage = Util.getBitmapFromByteArray(Util.base64Decode(backImage));
 
-        Glide.with(mContext).load(VehicleRegistrationFrontImage)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerCrop()
-                .transform(new CenterCrop(), new RoundedCorners(36))
-                .skipMemoryCache(true)
-                .into(holder.vehicleRegistrationFrontImage);
+        if (Util.isValidContextForGlide(mContext)) {
+            Glide.with(mContext).load(VehicleRegistrationFrontImage)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .centerCrop()
+                    .transform(new CenterCrop(), new RoundedCorners(36))
+                    .skipMemoryCache(true)
+                    .into(holder.vehicleRegistrationFrontImage);
 
-        Glide.with(mContext).load(VehicleRegistrationBackImage)
-                .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                .centerCrop()
-                .transform(new CenterCrop(), new RoundedCorners(36))
-                .skipMemoryCache(true)
-                .into(holder.vehicleRegistrationBackImage);
+            Glide.with(mContext).load(VehicleRegistrationBackImage)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .centerCrop()
+                    .transform(new CenterCrop(), new RoundedCorners(36))
+                    .skipMemoryCache(true)
+                    .into(holder.vehicleRegistrationBackImage);
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
