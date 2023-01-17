@@ -259,7 +259,7 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
         preferenceUtil.setPreference(PrefKeys.KEY_LICENSE_SURFACE, isFront);
         File path = new File(tempDirectoryStr);
         deleteTempFile(path);
-        Util.customViewDialog(this, getString(R.string.VehicleRegistrationCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_license_select, new CustomDialog.OnCustomInitialize() {
+        Util.customViewDialog(mContext, getString(R.string.VehicleRegistrationCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_license_select, new CustomDialog.OnCustomInitialize() {
             @Override
             public void onInitialize(View contentView, CustomDialog dialog) {
                 ContentButton btn_CustomDialog_Camera = contentView.findViewById(R.id.btn_CustomDialog_LicenseTakePhoto);

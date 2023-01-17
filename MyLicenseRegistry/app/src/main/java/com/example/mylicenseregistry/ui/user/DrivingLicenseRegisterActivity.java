@@ -266,7 +266,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         preferenceUtil.setPreference(PrefKeys.KEY_LICENSE_SURFACE, isFront);
         File path = new File(tempDirectoryStr);
         deleteTempFile(path);
-        Util.customViewDialog(this, getString(R.string.DrivingLicenseCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_license_select, new CustomDialog.OnCustomInitialize() {
+        Util.customViewDialog(mContext, getString(R.string.DrivingLicenseCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_license_select, new CustomDialog.OnCustomInitialize() {
             @Override
             public void onInitialize(View contentView, CustomDialog dialog) {
                 ContentButton btn_CustomDialog_Camera = contentView.findViewById(R.id.btn_CustomDialog_LicenseTakePhoto);
@@ -326,7 +326,6 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             if (!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
                     || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(DrivingLicenseRegisterActivity.this, Manifest.permission.CAMERA))) {
                 ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_CAMERA_PERMISSIONS, PERMISSION_CHECK_CAMERA_ID);
-
             } else {
                 String permissions = getString(R.string.permission_camera);
                 Util.selectDialog(mContext,
