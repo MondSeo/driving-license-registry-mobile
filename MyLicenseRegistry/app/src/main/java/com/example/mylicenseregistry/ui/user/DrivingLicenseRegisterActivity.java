@@ -95,15 +95,15 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             } else {
                 switch (v.getId()) {
                     case R.id.rel_DrivingLicenseRegisterActivity_Front:
-                        popupDrivingLicenseSelect(true);
+                        showSelectPopup(true);
                         break;
 
                     case R.id.rel_DrivingLicenseRegisterActivity_Back:
-                        popupDrivingLicenseSelect(false);
+                        showSelectPopup(false);
                         break;
 
                 }
-                Log.d(TAG, "popupDrivingLicenseSelect");
+                Log.d(TAG, "showSelectPopup");
             }
 
         }
@@ -244,7 +244,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             }
         } else if (requestCode == PERMISSION_CHECK_EXTERNAL_STORAGE_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                popupDrivingLicenseSelect(isFront);
+                showSelectPopup(isFront);
             }
 
         }
@@ -261,7 +261,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         }
     }
 
-    private void popupDrivingLicenseSelect(Boolean isFront) {
+    private void showSelectPopup(Boolean isFront) {
         tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
         preferenceUtil.setPreference(PrefKeys.KEY_LICENSE_SURFACE, isFront);
         File path = new File(tempDirectoryStr);
@@ -271,6 +271,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             public void onInitialize(View contentView, CustomDialog dialog) {
                 ContentButton btn_CustomDialog_Camera = contentView.findViewById(R.id.btn_CustomDialog_LicenseTakePhoto);
                 ContentButton btn_CustomDialog_Gallery = contentView.findViewById(R.id.btn_CustomDialog_LicenseFindGallery);
+                
                 btn_CustomDialog_Camera.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

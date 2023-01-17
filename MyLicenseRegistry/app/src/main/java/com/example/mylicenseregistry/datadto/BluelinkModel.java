@@ -96,15 +96,18 @@ public class BluelinkModel {
         return list;
     }
 
-    public ArrayList<Bundle> selectPositionDrivingLicenseImage(int index) {
+    public ArrayList<Bundle> selectPositionDrivingLicenseImage(int position) {
         ArrayList<Bundle> list = new ArrayList<Bundle>();
         Cursor cursor = null;
         try {
             StringBuilder sb = new StringBuilder();
             sb.append("SELECT");
-            sb.append(" *");
-            sb.append(" FROM " + BluelinkDatabaseHelper.TABLE_DRIVING_LICENSE_IMAGE);
-            sb.append(" WHERE " + "_index = " + index);
+            sb.append(" * ");
+            sb.append(", (SELECT count(*) FROM " + BluelinkDatabaseHelper.TABLE_DRIVING_LICENSE_IMAGE +" B WHERE A.");
+            sb.append(BluelinkSettings.DrivingLicenseImage.INDEX + ">= B.");
+            sb.append(BluelinkSettings.DrivingLicenseImage.INDEX + ") AS " + BluelinkSettings.DrivingLicenseImage.SEQ);
+            sb.append(" FROM " + BluelinkDatabaseHelper.TABLE_DRIVING_LICENSE_IMAGE + " A");
+            sb.append(" WHERE " + BluelinkSettings.DrivingLicenseImage.SEQ + " = " + position);
             sb.append(";");
 //            Logger.v(getClass().getSimpleName(), sb.toString());
 
@@ -183,7 +186,7 @@ public class BluelinkModel {
         try {
             StringBuilder sb = new StringBuilder();
             sb.append("SELECT");
-            sb.append(" *");
+            sb.append(" * ");
             sb.append(" FROM " + BluelinkDatabaseHelper.TABLE_VEHICLE_REGISTRATION_IMAGE);
             sb.append(";");
 //            Logger.v(getClass().getSimpleName(), sb.toString());
@@ -214,15 +217,18 @@ public class BluelinkModel {
         return list;
     }
 
-    public ArrayList<Bundle> selectPositionVehicleRegistrationImage(int index) {
+    public ArrayList<Bundle> selectPositionVehicleRegistrationImage(int position) {
         ArrayList<Bundle> list = new ArrayList<Bundle>();
         Cursor cursor = null;
         try {
             StringBuilder sb = new StringBuilder();
             sb.append("SELECT");
-            sb.append(" *");
-            sb.append(" FROM " + BluelinkDatabaseHelper.TABLE_VEHICLE_REGISTRATION_IMAGE);
-            sb.append(" WHERE " + "_index = " + index);
+            sb.append(" * ");
+            sb.append(", (SELECT count(*) FROM " + BluelinkDatabaseHelper.TABLE_VEHICLE_REGISTRATION_IMAGE +" B WHERE A.");
+            sb.append(BluelinkSettings.VehicleRegistrationImage.INDEX + ">= B.");
+            sb.append(BluelinkSettings.VehicleRegistrationImage.INDEX + ") AS " + BluelinkSettings.VehicleRegistrationImage.SEQ);
+            sb.append(" FROM " + BluelinkDatabaseHelper.TABLE_VEHICLE_REGISTRATION_IMAGE + " A");
+            sb.append(" WHERE " + BluelinkSettings.VehicleRegistrationImage.SEQ + " = " + position);
             sb.append(";");
 //            Logger.v(getClass().getSimpleName(), sb.toString());
 

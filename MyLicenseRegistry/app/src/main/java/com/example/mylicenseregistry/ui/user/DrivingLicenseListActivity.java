@@ -61,6 +61,7 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
                 deleteDrivingLicenseImage(position);
                 mDataList.remove(position);
                 mAdapter.notifyItemRemoved(position);
+                setDrivingLicenseList();
             }
         }
 

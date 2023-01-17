@@ -189,6 +189,11 @@ public class BluelinkSettings {
 		 */
 		public static final String DRIVING_LICENSE_IMAGE_BACK = "driving_license_image_back";
 
+		/**
+		 * Type : INTEGER
+		 */
+		public static final String SEQ = "seq";
+
 	}
 
 	public static final class VehicleRegistrationImage {
@@ -207,6 +212,11 @@ public class BluelinkSettings {
 		 * Type : TEXT
 		 */
 		public static final String VEHICLE_REGISTRATION_IMAGE_BACK = "vehicle_registration_image_back";
+
+		/**
+		 * Type : INTEGER
+		 */
+		public static final String SEQ = "seq";
 	}
 	
 //	public static final class POI {

@@ -60,6 +60,7 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
                 deleteVehicleRegistrationImage(position);
                 mDataList.remove(position);
                 mAdapter.notifyItemRemoved(position);
+                setVehicleRegistrationList();
             }
         }
 

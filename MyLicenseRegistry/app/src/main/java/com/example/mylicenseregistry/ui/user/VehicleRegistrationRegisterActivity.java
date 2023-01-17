@@ -95,15 +95,15 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
             } else {
                 switch (v.getId()) {
                     case R.id.rel_VehicleRegistrationRegisterActivity_Front:
-                        popupVehicleRegistrationSelect(true);
+                        showSelectPopup(true);
                         break;
 
                     case R.id.rel_VehicleRegistrationRegisterActivity_Back:
-                        popupVehicleRegistrationSelect(false);
+                        showSelectPopup(false);
                         break;
 
                 }
-                Log.d(TAG, "popupVehicleRegistrationSelect");
+                Log.d(TAG, "showSelectPopup");
             }
 
         }
@@ -237,7 +237,7 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
             }
         } else if(requestCode == PERMISSION_CHECK_EXTERNAL_STORAGE_ID) {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                popupVehicleRegistrationSelect(isFront);
+                showSelectPopup(isFront);
             }
 
         }
@@ -254,7 +254,7 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
         }
     }
 
-    private void popupVehicleRegistrationSelect(Boolean isFront) {
+    private void showSelectPopup(Boolean isFront) {
         tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
         preferenceUtil.setPreference(PrefKeys.KEY_LICENSE_SURFACE, isFront);
         File path = new File(tempDirectoryStr);
