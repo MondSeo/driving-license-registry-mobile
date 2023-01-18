@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">MyLicenseRegistry</string>
-    <string name="DrivingLicenseRegisterActivity_FrontContentButton_Text">이곳을 클릭하여 운전면허증을 업로드 해주세요. (앞면)</string>
-    <string name="DrivingLicenseRegisterActivity_BackContentButton_Text">이곳을 클릭하여 운전면허증을 업로드 해주세요. (뒷면)</string>
-    <string name="VehicleRegistrationRegisterActivity_FrontContentButton_Text">이곳을 클릭하여 차량등록증을 업로드 해주세요. (앞면)</string>
-    <string name="VehicleRegistrationRegisterActivity_BackContentButton_Text">이곳을 클릭하여 차량등록증을 업로드 해주세요. (뒷면)</string>
-
+    <string name="DrivingLicenseRegisterActivity_FrontImage">앞면</string>
+    <string name="DrivingLicenseRegisterActivity_BackImage">뒷면</string>
+    <string name="VehicleRegistrationActivity_MainPage">메인 페이지</string>
+    <string name="VehicleRegistrationActivity_AttachmentPage">추가 페이지</string>
+    <string name="LicenseRegister_Below_Guide">면허증 사진들은 오직 로컬 저장소에만 저장되며,\n 차량 구입 또는 차량 이용 등에 사용됩니다.</string>
     <string name="Common_License_ListAdd_Text">+ 추가</string>
     <string name="DrivingLicenseCustomDialog_Title_Text">운전면허증 추가</string>
     <string name="DrivingLicenseCustomDialog_SubTitle_Text">면허증을 등록해주세요.</string>

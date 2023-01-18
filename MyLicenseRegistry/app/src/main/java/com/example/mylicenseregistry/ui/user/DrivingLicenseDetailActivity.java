@@ -88,7 +88,7 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
 
                     break;
                     case R.id.btn_DrivingLicenseDetailActivity_Delete:
-                        Util.selectDialog(mContext, getString(R.string.Common_Delete),getString(R.string.Common_Cancel),getString(R.string.Common_Confirm),null, new View.OnClickListener() {
+                        Util.selectDialog(mContext, getString(R.string.Common_ConfirmDelete),getString(R.string.Common_Cancel),getString(R.string.Common_Confirm),null, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 setResult(RESULT_OK, intent);

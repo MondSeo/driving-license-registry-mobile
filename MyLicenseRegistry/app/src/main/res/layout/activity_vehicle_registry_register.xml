@@ -41,13 +41,13 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:text="@string/VehicleRegistrationRegisterActivity_FrontContentButton_Text" />
+                android:text="@string/VehicleRegistrationActivity_MainPage" />
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:id="@+id/rel_VehicleRegistrationRegisterActivity_Back"
         android:layout_width="match_parent"
@@ -84,7 +84,16 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="30dp"
-                android:text="@string/VehicleRegistrationRegisterActivity_BackContentButton_Text" />
+                android:text="@string/VehicleRegistrationActivity_AttachmentPage" />
         </LinearLayout>
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/LicenseRegister_Below_Guide"
+        android:layout_below="@+id/rel_VehicleRegistrationRegisterActivity_Back"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        />
 </RelativeLayout>

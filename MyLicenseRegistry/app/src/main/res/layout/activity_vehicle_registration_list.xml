@@ -28,6 +28,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:visibility="gone"
         android:id="@+id/rcl_VehicleRegistrationListActivity"
         android:layout_width="match_parent"
@@ -38,7 +39,7 @@
     <com.example.mylicenseregistry.widget.ContentButton
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginBottom="20dp"
         android:visibility="gone"
         android:layout_below="@+id/rcl_VehicleRegistrationListActivity"
         android:id="@+id/btn_VehicleRegistrationListActivity_ListAdd"
