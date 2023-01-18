@@ -147,7 +147,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String strSurface = preferenceUtil.getPreference(PrefKeys.KEY_LICENSE_SURFACE, "true");
-        boolean isFront = Boolean.parseBoolean(strSurface);
+        boolean isFrontSurface = Boolean.parseBoolean(strSurface);
         switch (requestCode) {
             case REQUEST_CODE_CAMERA:
                 if (resultCode == RESULT_OK || resultCode == RESULT_CANCELED) {
@@ -158,7 +158,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                         return;
                     }
                     Bitmap bitmap = PictureUtils.getSampleSizeBitmap(captureUri, 4);
-                    if (isFront) {
+                    if (isFrontSurface) {
                         if (bitmap != null) {
                             if (drivingLicenseImageFront != null) {
                                 drivingLicenseImageFront.recycle();
@@ -189,7 +189,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                 if (resultCode == RESULT_OK) {
                     Uri selectedImageUri = data.getData();
                     selectedImagePath = getPath(selectedImageUri);
-                    if (isFront) {
+                    if (isFrontSurface) {
                         if (drivingLicenseImageFront != null) {
                             drivingLicenseImageFront.recycle();
                             drivingLicenseImageFront = null;
@@ -237,14 +237,14 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         String strSurface = preferenceUtil.getPreference(PrefKeys.KEY_LICENSE_SURFACE, "true");
-        boolean isFront = Boolean.parseBoolean(strSurface);
+        boolean isFrontSurface = Boolean.parseBoolean(strSurface);
         if (requestCode == PERMISSION_CHECK_CAMERA_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 openCamera();
             }
         } else if (requestCode == PERMISSION_CHECK_EXTERNAL_STORAGE_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showSelectPopup(isFront);
+                showSelectPopup(isFrontSurface);
             }
 
         }
@@ -261,9 +261,9 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         }
     }
 
-    private void showSelectPopup(Boolean isFront) {
+    private void showSelectPopup(Boolean isFrontSurface) {
         tempDirectoryStr = mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES) + "/temp/";
-        preferenceUtil.setPreference(PrefKeys.KEY_LICENSE_SURFACE, isFront);
+        preferenceUtil.setPreference(PrefKeys.KEY_LICENSE_SURFACE, isFrontSurface);
         File path = new File(tempDirectoryStr);
         deleteTempFile(path);
         Util.customViewDialog(mContext, getString(R.string.FavoriteAddActivity_AddPhoto), getString(R.string.MainActivity_select_share_option_below)
@@ -371,13 +371,13 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         return newImgPath;
     }
 
-    private void setDrivingLicenseImage(Bitmap imageBitmap, Boolean isFront) {
+    private void setDrivingLicenseImage(Bitmap imageBitmap, Boolean isFrontSurface) {
 //        RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), imageBitmap);
 //        roundDrawable.setCircular(true);
 //        img_UserProfileActivity_UserImage.setImageDrawable(roundDrawable);
 
         if (Util.isValidContextForGlide(mContext)) {
-            if (isFront) {
+            if (isFrontSurface) {
                 lin_DrivingLicenseRegisterActivity_Front.setVisibility(View.GONE);
                 img_DrivingLicenseRegisterActivity_UploadedImage_Front.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
@@ -425,8 +425,8 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         return null;
     }
 
-//    private String contentText(boolean isFront) {
-//        if (isFront) {
+//    private String contentText(boolean isFrontSurface) {
+//        if (isFrontSurface) {
 //            return getString(R.string.Common_CustomDialog_ContentButton_LicenseFront_Text);
 //        }
 //        return getString(R.string.Common_CustomDialog_ContentButton_LicenseBack_Text);
