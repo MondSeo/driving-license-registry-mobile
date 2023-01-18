@@ -322,13 +322,13 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
     }
 
     private void openCamera() {
-        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            if (!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.CAMERA_PERMISSION)
-                    || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(DrivingLicenseRegisterActivity.this, Manifest.permission.CAMERA))) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            if (!PermissionUtil.huaweiShouldShowRequestPermission(this, PermissionUtil.CAMERA_PERMISSION)
+                    || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA))) {
                 ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_CAMERA_PERMISSIONS, PERMISSION_CHECK_CAMERA_ID);
             } else {
                 String permissions = getString(R.string.permission_camera);
-                Util.selectDialog(mContext,
+                Util.selectDialog(this,
                         String.format(getString(R.string.permissions_deny_optional), AppConfig.getAppName(), permissions),
                         getString(R.string.Common_Cancel), getString(R.string.set),
                         null,
