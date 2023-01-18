@@ -25,6 +25,8 @@
         <activity
             android:name=".ui.user.VehicleRegistrationDetailActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.app.lib_name"
@@ -33,6 +35,8 @@
         <activity
             android:name=".ui.user.VehicleRegistrationListActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.app.lib_name"
@@ -51,6 +55,8 @@
         </activity>
         <activity
             android:name=".ui.user.MyLicenseActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -66,6 +72,8 @@
         <activity
             android:name=".ui.user.DrivingLicenseListActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.app.lib_name"
@@ -85,6 +93,8 @@
         <activity
             android:name=".ui.user.DrivingLicenseDetailActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.app.lib.name"
