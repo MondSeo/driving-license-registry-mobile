@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -69,6 +70,7 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
                 mDataList.remove(position);
                 mAdapter.notifyItemRemoved(position);
                 setDrivingLicenseList();
+                Toast.makeText(mContext, R.string.Toast_DeleteComplete, Toast.LENGTH_SHORT).show();
             }
         }
     }

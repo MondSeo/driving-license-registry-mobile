@@ -92,7 +92,6 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
                             public void onClick(View v) {
                                 setResult(RESULT_OK, intent);
                                 intent.putExtra("Position",position - 1);
-                                Toast.makeText(mContext, R.string.Toast_DeleteComplete, Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });

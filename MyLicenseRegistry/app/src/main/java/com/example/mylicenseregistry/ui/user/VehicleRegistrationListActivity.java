@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -57,11 +58,11 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
         if(requestCode == REQUEST_CODE_IMAGE_DETAIL){
             if (resultCode == RESULT_OK){
                 int position = data.getIntExtra("Position",0);
-
                 deleteVehicleRegistrationImage(position);
                 mDataList.remove(position);
                 mAdapter.notifyItemRemoved(position);
                 setVehicleRegistrationList();
+                Toast.makeText(mContext, R.string.Toast_DeleteComplete, Toast.LENGTH_SHORT).show();
             }
         }
 
