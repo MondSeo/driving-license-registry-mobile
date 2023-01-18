@@ -57,6 +57,7 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
         if(requestCode == REQUEST_CODE_IMAGE_DETAIL){
             if (resultCode == RESULT_OK){
                 int position = data.getIntExtra("Position",0);
+
                 deleteVehicleRegistrationImage(position);
                 mDataList.remove(position);
                 mAdapter.notifyItemRemoved(position);
@@ -80,16 +81,12 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
                 startActivityForResult(VehicleRegistrationRegisterActivity.class, REQUEST_CODE_IMAGE);
             }
         };
-
-
         btn_VehicleRegistrationListActivity_ListAdd.setOnClickListener(clickListener);
         rel_VehicleRegistrationListActivity_EmptyList.setOnClickListener(clickListener);
     }
 
     @Override
-    public void initProcess() {
-
-    }
+    public void initProcess() {}
 
     private void setVehicleRegistrationList() {
         getVehicleRegistrationList();
@@ -114,6 +111,9 @@ public class VehicleRegistrationListActivity extends BaseActivity_CommonGNB {
             rel_VehicleRegistrationListActivity_EmptyList.setVisibility(View.GONE);
             rcl_VehicleRegistrationListActivity.setVisibility(View.VISIBLE);
             btn_VehicleRegistrationListActivity_ListAdd.setVisibility(View.VISIBLE);
+            if(mAdapter.getItemCount() >= 10){
+                btn_VehicleRegistrationListActivity_ListAdd.setVisibility(View.GONE);
+            }
         }
     }
 

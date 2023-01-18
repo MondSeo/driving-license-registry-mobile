@@ -1,7 +1,10 @@
 package com.example.mylicenseregistry.adapter;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,8 +38,6 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public class ViewHolder extends RecyclerView.ViewHolder {
-
-
         ImageView drivingLicenseFrontImage;
         ImageView drivingLicenseBackImage;
 
@@ -53,10 +54,8 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
     public DrivingLicenseListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         mContext = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         View view = inflater.inflate(R.layout.item_driving_license_list, parent, false);
         DrivingLicenseListAdapter.ViewHolder viewHolder = new DrivingLicenseListAdapter.ViewHolder(view);
-
         return viewHolder;
     }
 
@@ -71,17 +70,23 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
 
         if (Util.isValidContextForGlide(mContext)) {
             Glide.with(mContext).load(drivingLicenseFrontImage)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerCrop()
                     .transform(new CenterCrop(), new RoundedCorners(36))
                     .skipMemoryCache(true)
+                    .placeholder(R.drawable.drawable_circle_edge)
+                    .error(R.drawable.drawable_circle_edge)
+                    .fallback(R.drawable.drawable_circle_edge)
                     .into(holder.drivingLicenseFrontImage);
 
             Glide.with(mContext).load(drivingLicenseBackImage)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerCrop()
                     .transform(new CenterCrop(), new RoundedCorners(36))
                     .skipMemoryCache(true)
+                    .placeholder(R.drawable.drawable_circle_edge)
+                    .error(R.drawable.drawable_circle_edge)
+                    .fallback(R.drawable.drawable_circle_edge)
                     .into(holder.drivingLicenseBackImage);
         }
 
@@ -90,11 +95,9 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
             public void onClick(View v) {
                 if (mListener != null) {
                     mListener.onItemClick(v, position);
-
                 }
             }
         });
-
     }
 
     // getItemCount() - 전체 데이터 갯수 리턴.
@@ -102,10 +105,6 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
     public int getItemCount() {
         return mDataList.size();
     }
-
-//    public void addImageItem() {
-//        mDataList.add()
-//    }
 
     public void deleteItem(DrivingLicenseImage info, int realPosition) {
         mDataList.remove(info);
@@ -115,7 +114,6 @@ public class DrivingLicenseListAdapter extends RecyclerView.Adapter<DrivingLicen
     public ArrayList<DrivingLicenseImage> getDataList() {
         return mDataList;
     }
-
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener;

@@ -69,17 +69,23 @@ public class VehicleRegistrationListAdapter extends RecyclerView.Adapter<Vehicle
 
         if (Util.isValidContextForGlide(mContext)) {
             Glide.with(mContext).load(VehicleRegistrationFrontImage)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerCrop()
                     .transform(new CenterCrop(), new RoundedCorners(36))
                     .skipMemoryCache(true)
+                    .placeholder(R.drawable.drawable_circle_edge)
+                    .error(R.drawable.drawable_circle_edge)
+                    .fallback(R.drawable.drawable_circle_edge)
                     .into(holder.vehicleRegistrationFrontImage);
 
             Glide.with(mContext).load(VehicleRegistrationBackImage)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerCrop()
                     .transform(new CenterCrop(), new RoundedCorners(36))
                     .skipMemoryCache(true)
+                    .placeholder(R.drawable.drawable_circle_edge)
+                    .error(R.drawable.drawable_circle_edge)
+                    .fallback(R.drawable.drawable_circle_edge)
                     .into(holder.vehicleRegistrationBackImage);
         }
 

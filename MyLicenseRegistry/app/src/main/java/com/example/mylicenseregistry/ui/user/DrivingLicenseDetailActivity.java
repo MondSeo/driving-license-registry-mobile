@@ -109,15 +109,21 @@ public class DrivingLicenseDetailActivity extends BaseActivity_CommonGNB {
     private void setImageResources(Bitmap drivingLicenseFrontImage, Bitmap drivingLicenseBackImage) {
         if (Util.isValidContextForGlide(mContext)) {
             Glide.with(mContext).load(drivingLicenseFrontImage)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .transform(new CenterCrop(), new RoundedCorners(36))
                     .skipMemoryCache(true)
+                    .placeholder(R.drawable.drawable_circle_edge)
+                    .error(R.drawable.drawable_circle_edge)
+                    .fallback(R.drawable.drawable_circle_edge)
                     .into(img_DrivingLicenseDetailActivity_Front);
 
             Glide.with(mContext).load(drivingLicenseBackImage)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .transform(new CenterCrop(), new RoundedCorners(36))
                     .skipMemoryCache(true)
+                    .placeholder(R.drawable.drawable_circle_edge)
+                    .error(R.drawable.drawable_circle_edge)
+                    .fallback(R.drawable.drawable_circle_edge)
                     .into(img_DrivingLicenseDetailActivity_Back);
         }
     }

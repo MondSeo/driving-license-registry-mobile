@@ -75,7 +75,6 @@ public class BluelinkModel {
                 return list;
             while (cursor.moveToNext()) {
                 Bundle bundle = new Bundle();
-
                 int numIndex = cursor.getInt(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.INDEX));
                 String frontImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT));
                 String backImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK));
@@ -120,8 +119,6 @@ public class BluelinkModel {
                 int numIndex = cursor.getInt(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.INDEX));
                 String frontImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT));
                 String backImage = cursor.getString(cursor.getColumnIndex(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_BACK));
-
-                Log.d(TAG, numIndex + "불러와짐");
 
                 bundle.putInt(BluelinkSettings.DrivingLicenseImage.INDEX, numIndex);
                 bundle.putString(BluelinkSettings.DrivingLicenseImage.DRIVING_LICENSE_IMAGE_FRONT, frontImage);

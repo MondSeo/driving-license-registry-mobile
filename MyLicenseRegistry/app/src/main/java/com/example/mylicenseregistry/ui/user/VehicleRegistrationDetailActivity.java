@@ -110,15 +110,21 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
     private void setImageResources(Bitmap VehicleRegistrationFrontImage, Bitmap VehicleRegistrationBackImage) {
         if (Util.isValidContextForGlide(mContext)) {
             Glide.with(mContext).load(VehicleRegistrationFrontImage)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .transform(new CenterCrop(), new RoundedCorners(36))
                     .skipMemoryCache(true)
+                    .placeholder(R.drawable.drawable_circle_edge)
+                    .error(R.drawable.drawable_circle_edge)
+                    .fallback(R.drawable.drawable_circle_edge)
                     .into(img_VehicleRegistrationDetailActivity_Front);
 
             Glide.with(mContext).load(VehicleRegistrationBackImage)
-                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .transform(new CenterCrop(), new RoundedCorners(36))
                     .skipMemoryCache(true)
+                    .placeholder(R.drawable.drawable_circle_edge)
+                    .error(R.drawable.drawable_circle_edge)
+                    .fallback(R.drawable.drawable_circle_edge)
                     .into(img_VehicleRegistrationDetailActivity_Back);
         }
     }

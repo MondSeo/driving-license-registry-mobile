@@ -1,7 +1,9 @@
 package com.example.mylicenseregistry.ui.user;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 
 public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
 
+    private static final String TAG = "DrivingLicenseListActivity";
     DrivingLicenseListAdapter mAdapter;
     RelativeLayout rel_DrivingLicenseListActivity_EmptyList;
     ContentButton btn_DrivingLicenseListActivity_ListAdd;
@@ -31,12 +34,16 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
     public static final int REQUEST_CODE_IMAGE = 30001;
     public static final int REQUEST_CODE_IMAGE_DETAIL = 30002;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving_license_list);
         initLayout();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         setDrivingLicenseList();
     }
 
@@ -64,7 +71,6 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
                 setDrivingLicenseList();
             }
         }
-
     }
 
     @Override
@@ -81,7 +87,6 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
                 startActivityForResult(DrivingLicenseRegisterActivity.class, REQUEST_CODE_IMAGE);
             }
         };
-
         btn_DrivingLicenseListActivity_ListAdd.setOnClickListener(clickListener);
         rel_DrivingLicenseListActivity_EmptyList.setOnClickListener(clickListener);
     }
@@ -92,9 +97,10 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
     }
 
     private void setDrivingLicenseList() {
-        getDrivingLicenseList();
-        mAdapter = new DrivingLicenseListAdapter(mContext, mDataList);
 
+        getDrivingLicenseList();
+
+        mAdapter = new DrivingLicenseListAdapter(mContext, mDataList);
         rcl_DrivingLicenseListActivity.setLayoutManager(new LinearLayoutManager(mContext));
         rcl_DrivingLicenseListActivity.setAdapter(mAdapter);
 
@@ -114,13 +120,16 @@ public class DrivingLicenseListActivity extends BaseActivity_CommonGNB {
             rel_DrivingLicenseListActivity_EmptyList.setVisibility(View.GONE);
             rcl_DrivingLicenseListActivity.setVisibility(View.VISIBLE);
             btn_DrivingLicenseListActivity_ListAdd.setVisibility(View.VISIBLE);
+            if(mAdapter.getItemCount() >= 10){
+                btn_DrivingLicenseListActivity_ListAdd.setVisibility(View.GONE);
+            }
         }
     }
 
     private void getDrivingLicenseList() {
-        mDataList = new ArrayList<>();
-        ArrayList<Bundle> dbArrayList = null;
+        mDataList.clear();
 
+        ArrayList<Bundle> dbArrayList = null;
         dbArrayList = BluelinkModel.getInst(mContext).selectDrivingLicenseImageTable();
 
         if (dbArrayList != null) {

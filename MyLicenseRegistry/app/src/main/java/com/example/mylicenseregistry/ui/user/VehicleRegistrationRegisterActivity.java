@@ -371,17 +371,23 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
                 lin_VehicleRegistrationRegisterActivity_Front.setVisibility(View.GONE);
                 img_VehicleRegistrationRegisterActivity_UploadedImage_Front.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
+                        .placeholder(R.drawable.drawable_circle_edge)
+                        .error(R.drawable.drawable_circle_edge)
+                        .fallback(R.drawable.drawable_circle_edge)
                         .into(img_VehicleRegistrationRegisterActivity_UploadedImage_Front);
             } else {
                 lin_VehicleRegistrationRegisterActivity_Back.setVisibility(View.GONE);
                 img_VehicleRegistrationRegisterActivity_UploadedImage_Back.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
+                        .placeholder(R.drawable.drawable_circle_edge)
+                        .error(R.drawable.drawable_circle_edge)
+                        .fallback(R.drawable.drawable_circle_edge)
                         .into(img_VehicleRegistrationRegisterActivity_UploadedImage_Back);
             }
         }

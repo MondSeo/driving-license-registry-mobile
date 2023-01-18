@@ -380,18 +380,24 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                 lin_DrivingLicenseRegisterActivity_Front.setVisibility(View.GONE);
                 img_DrivingLicenseRegisterActivity_UploadedImage_Front.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
+                        .placeholder(R.drawable.drawable_circle_edge)
+                        .error(R.drawable.drawable_circle_edge)
+                        .fallback(R.drawable.drawable_circle_edge)
                         .into(img_DrivingLicenseRegisterActivity_UploadedImage_Front);
 
             } else {
                 lin_DrivingLicenseRegisterActivity_Back.setVisibility(View.GONE);
                 img_DrivingLicenseRegisterActivity_UploadedImage_Back.setVisibility(View.VISIBLE);
                 Glide.with(mContext).load(imageBitmap)
-                        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .transform(new CenterCrop(), new RoundedCorners(36))
                         .skipMemoryCache(true)
+                        .placeholder(R.drawable.drawable_circle_edge)
+                        .error(R.drawable.drawable_circle_edge)
+                        .fallback(R.drawable.drawable_circle_edge)
                         .into(img_DrivingLicenseRegisterActivity_UploadedImage_Back);
             }
         }
