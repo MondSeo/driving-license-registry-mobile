@@ -72,7 +72,6 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
                 VehicleRegistrationFrontImage = Util.getBitmapFromByteArray(Util.base64Decode(frontBitmapStr));
                 String backBitmapStr = item.getString(BluelinkSettings.VehicleRegistrationImage.VEHICLE_REGISTRATION_IMAGE_BACK);
                 VehicleRegistrationBackImage = Util.getBitmapFromByteArray(Util.base64Decode(backBitmapStr));
-
             }
         }
 
@@ -97,7 +96,6 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
                                 finish();
                             }
                         });
-
                         break;
                 }
             }

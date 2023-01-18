@@ -41,6 +41,9 @@
         <activity
             android:name=".ui.user.VehicleRegistrationRegisterActivity"
             android:exported="false"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.app.lib_name"
@@ -70,6 +73,9 @@
         </activity>
         <activity
             android:name=".ui.user.DrivingLicenseRegisterActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"
             android:exported="false"
             android:theme="@style/AppTheme">
             <meta-data
