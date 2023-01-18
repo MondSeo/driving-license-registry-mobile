@@ -74,7 +74,7 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
             if (PermissionUtil.isStoragePermissionDeny(mContext)) {
                 if (!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.STORAGE_PERMISSION)
                         || (!PermissionUtil.isHuaweiDevice() && PermissionUtil.isStorageFirstAskPermission(VehicleRegistrationRegisterActivity.this))) {
-                    ActivityCompat.requestPermissions(VehicleRegistrationRegisterActivity.this, CHECK_EXTERNAL_STORAGE_PERMISSIONS, PERMISSION_CHECK_EXTERNAL_STORAGE_ID);
+                    ActivityCompat.requestPermissions(VehicleRegistrationRegisterActivity.this, (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) ? CHECK_EXTERNAL_STORAGE_PERMISSIONS : CHECK_READ_MEDIA_IMAGES_PERMISSIONS, PERMISSION_CHECK_EXTERNAL_STORAGE_ID);
                 } else {
                     String permissions = getString(R.string.permission_storage);
                     Util.selectDialog(VehicleRegistrationRegisterActivity.this,

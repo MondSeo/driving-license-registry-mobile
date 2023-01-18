@@ -82,6 +82,10 @@ public abstract class BaseActivity_CommonGNB extends AppCompatActivity {
             Manifest.permission.CAMERA
     };
 
+    public static final String[] CHECK_READ_MEDIA_IMAGES_PERMISSIONS = {
+            Manifest.permission.READ_MEDIA_IMAGES
+    };
+
     public static final String[] CHECK_EXTERNAL_STORAGE_PERMISSIONS = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
