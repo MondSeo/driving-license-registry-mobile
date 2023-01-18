@@ -74,7 +74,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
             if (PermissionUtil.isStoragePermissionDeny(mContext)) {
                 if (!PermissionUtil.huaweiShouldShowRequestPermission(mContext, PermissionUtil.STORAGE_PERMISSION)
                         || (!PermissionUtil.isHuaweiDevice() && PermissionUtil.isStorageFirstAskPermission(DrivingLicenseRegisterActivity.this))) {
-                    ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_EXTERNAL_STORAGE_PERMISSIONS, PERMISSION_CHECK_EXTERNAL_STORAGE_ID);
+                    ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) ? CHECK_EXTERNAL_STORAGE_PERMISSIONS : CHECK_READ_MEDIA_IMAGES_PERMISSIONS, PERMISSION_CHECK_EXTERNAL_STORAGE_ID);
                 } else {
                     String permissions = getString(R.string.permission_storage);
                     Util.selectDialog(DrivingLicenseRegisterActivity.this,
@@ -325,7 +325,7 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (!PermissionUtil.huaweiShouldShowRequestPermission(this, PermissionUtil.CAMERA_PERMISSION)
                     || (!PermissionUtil.isHuaweiDevice() && !ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA))) {
-                ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) ? CHECK_EXTERNAL_STORAGE_PERMISSIONS : CHECK_READ_MEDIA_IMAGES_PERMISSIONS, PERMISSION_CHECK_EXTERNAL_STORAGE_ID);
+                ActivityCompat.requestPermissions(DrivingLicenseRegisterActivity.this, CHECK_CAMERA_PERMISSIONS, PERMISSION_CHECK_CAMERA_ID);
             } else {
                 String permissions = getString(R.string.permission_camera);
                 Util.selectDialog(this,
