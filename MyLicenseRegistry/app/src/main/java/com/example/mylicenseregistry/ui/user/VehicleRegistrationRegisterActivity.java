@@ -415,9 +415,9 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
 
     private String contentText(boolean isFront) {
         if (isFront) {
-            return getString(R.string.Common_CustomDialog_ContentButton_LicenseFront_Text);
+            return getString(R.string.Common_CustomDialog_ContentButton_LicenseMainPage_Text);
         }
-        return getString(R.string.Common_CustomDialog_ContentButton_LicenseBack_Text);
+        return getString(R.string.Common_CustomDialog_ContentButton_LicenseAttachmentPage_Text);
     }
 
 }

@@ -10,6 +10,8 @@
     <string name="DrivingLicenseCustomDialog_SubTitle_Text">면허증을 등록해주세요.</string>
     <string name="Common_CustomDialog_ContentButton_LicenseFront_Text">앞면 사진을 추가해주세요.</string>
     <string name="Common_CustomDialog_ContentButton_LicenseBack_Text">뒷면 사진을 추가해주세요.</string>
+    <string name="Common_CustomDialog_ContentButton_LicenseMainPage_Text">메인 페이지 사진을 추가해주세요.</string>
+    <string name="Common_CustomDialog_ContentButton_LicenseAttachmentPage_Text">추가 페이지 사진을 추가해주세요.</string>
     <string name="Common_CustomDialog_Save_Text">저장되었습니다.</string>
     <string name="DrivingLicenseCertificate_Text">운전면허증</string>
     <string name="DrivingLicenseDetailActivity_Title">운전면허증 상세</string>
