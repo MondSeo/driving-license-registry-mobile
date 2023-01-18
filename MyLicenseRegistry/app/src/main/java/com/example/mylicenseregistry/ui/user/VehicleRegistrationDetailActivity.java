@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -84,15 +85,15 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
                     case R.id.btn_VehicleRegistrationDetailActivity_Save:
                         saveImageToGallery(mContext,  VehicleRegistrationFrontImage,"BlueLink_VehicleRegistration", position);
                         saveImageToGallery(mContext,  VehicleRegistrationBackImage,"BlueLink_VehicleRegistration", position);
-                        Util.confirmDialog(mContext, getString(R.string.Common_CustomDialog_Save_Text));
-
+                        Toast.makeText(mContext, R.string.Toast_Save_Complete, Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.btn_VehicleRegistrationDetailActivity_Delete:
-                        Util.selectDialog(mContext, getString(R.string.Common_ConfirmDelete),getString(R.string.Common_Cancel),getString(R.string.Common_Confirm),null, new View.OnClickListener() {
+                        Util.selectDialog(mContext, getString(R.string.Popup_ConfirmDelete),getString(R.string.Common_Cancel),getString(R.string.Common_Confirm),null, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 setResult(RESULT_OK, intent);
                                 intent.putExtra("Position",position - 1);
+                                Toast.makeText(mContext, R.string.Toast_DeleteComplete, Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });
@@ -165,12 +166,9 @@ public class VehicleRegistrationDetailActivity extends BaseActivity_CommonGNB {
                                 Uri.parse("file://" + Environment.getExternalStorageDirectory())
                         )
                 );
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-
 }

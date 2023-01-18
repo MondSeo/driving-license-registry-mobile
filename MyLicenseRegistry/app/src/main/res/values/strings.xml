@@ -6,22 +6,15 @@
     <string name="VehicleRegistrationActivity_AttachmentPage">추가 페이지</string>
     <string name="LicenseRegister_Below_Guide">면허증 사진들은 오직 로컬 저장소에만 저장되며,\n 차량 구입 또는 차량 이용 등에 사용됩니다.</string>
     <string name="Common_License_ListAdd_Text">+ 추가</string>
-    <string name="DrivingLicenseCustomDialog_Title_Text">운전면허증 추가</string>
-    <string name="DrivingLicenseCustomDialog_SubTitle_Text">면허증을 등록해주세요.</string>
-    <string name="Common_CustomDialog_ContentButton_LicenseFront_Text">앞면 사진을 추가해주세요.</string>
-    <string name="Common_CustomDialog_ContentButton_LicenseBack_Text">뒷면 사진을 추가해주세요.</string>
-    <string name="Common_CustomDialog_ContentButton_LicenseMainPage_Text">메인 페이지 사진을 추가해주세요.</string>
-    <string name="Common_CustomDialog_ContentButton_LicenseAttachmentPage_Text">추가 페이지 사진을 추가해주세요.</string>
-    <string name="Common_CustomDialog_Save_Text">저장되었습니다.</string>
+    <string name="Toast_Save_Complete">저장이 완료되었습니다.</string>
     <string name="DrivingLicenseCertificate_Text">운전면허증</string>
     <string name="DrivingLicenseDetailActivity_Title">운전면허증 상세</string>
     <string name="VehicleRegistrationCertificate_Text">차량등록증</string>
     <string name="VehicleRegistrationDetailActivity">차량등록증 상세</string>
-    <string name="VehicleRegistrationCustomDialog_Title_Text">차량등록증 추가</string>
-    <string name="VehicleRegistrationCustomDialog_SubTitle_Text">등록증을 등록해주세요.</string>
     <string name="MyLicenseActivity_Title">My License</string>
     <string name="Common_Delete">삭제</string>
-    <string name="Common_ConfirmDelete">정말 삭제하시겠습니까?</string>
+    <string name="Toast_DeleteComplete">삭제 완료</string>
+    <string name="Popup_ConfirmDelete">정말 삭제하시겠습니까?</string>
     <string name="VehicleRegistrationRegisterActivity_ListAdd_Text">+ 추가</string>
 
     <string name="Common_Save">저장</string>
@@ -39,7 +32,8 @@
     <string name="permission_camera">카메라</string>
     <string name="DrivingLicenseRegisterActivity_TakePhoto">사진 촬영</string>
     <string name="DrivingLicenseRegisterActivity_Gallery">앨범에서 사진 선택</string>
-
+    <string name="MainActivity_select_share_option_below">아래 중 선택해 주세요.</string>
+    <string name="FavoriteAddActivity_AddPhoto">사진 추가</string>
     <string name="driver_license_popup_content_ble_bluelink">친애하는 사용자 여러분, 계정의 보안 및 차량 사용을 강화하기 위해 BLE 블루투스 키 기능을 사용하기 전에 현재 계정에 로그인된 차량의 운전 면허증 사진을 업로드해야 합니다.\n메뉴 → 내 정보를 통해서도 신분증 사진을 업로드할 수 있습니다.\n\n상세 상담 : 400-806-6066</string>
     <string name="driver_license_popup_content_ble_kia">친애하는 사용자 여러분, 계정의 보안 및 차량 사용을 강화하기 위해 BLE 블루투스 키 기능을 사용하기 전에 현재 계정에 로그인된 차량의 운전 면허증 사진을 업로드해야 합니다.\n메뉴 → 내 정보를 통해서도 신분증 사진을 업로드할 수 있습니다.\n\n상세 상담 : 400-807-0018</string>
     <string name="driver_license_popup_checkbox">7일 동안 보지 않기</string>

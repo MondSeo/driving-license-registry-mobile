@@ -259,7 +259,8 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
         preferenceUtil.setPreference(PrefKeys.KEY_LICENSE_SURFACE, isFront);
         File path = new File(tempDirectoryStr);
         deleteTempFile(path);
-        Util.customViewDialog(mContext, getString(R.string.VehicleRegistrationCustomDialog_Title_Text), contentText(isFront), R.layout.customdialog_license_select, new CustomDialog.OnCustomInitialize() {
+        Util.customViewDialog(mContext, getString(R.string.FavoriteAddActivity_AddPhoto),
+                getString(R.string.MainActivity_select_share_option_below), R.layout.customdialog_license_select, new CustomDialog.OnCustomInitialize() {
             @Override
             public void onInitialize(View contentView, CustomDialog dialog) {
                 ContentButton btn_CustomDialog_Camera = contentView.findViewById(R.id.btn_CustomDialog_LicenseTakePhoto);
@@ -413,11 +414,11 @@ public class VehicleRegistrationRegisterActivity extends BaseActivity_CommonGNB 
         return null;
     }
 
-    private String contentText(boolean isFront) {
-        if (isFront) {
-            return getString(R.string.Common_CustomDialog_ContentButton_LicenseMainPage_Text);
-        }
-        return getString(R.string.Common_CustomDialog_ContentButton_LicenseAttachmentPage_Text);
-    }
+//    private String contentText(boolean isFront) {
+//        if (isFront) {
+//            return getString(R.string.Common_CustomDialog_ContentButton_LicenseMainPage_Text);
+//        }
+//        return getString(R.string.Common_CustomDialog_ContentButton_LicenseAttachmentPage_Text);
+//    }
 
 }
