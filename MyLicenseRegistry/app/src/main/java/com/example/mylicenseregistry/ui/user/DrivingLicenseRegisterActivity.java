@@ -167,7 +167,6 @@ public class DrivingLicenseRegisterActivity extends BaseActivity_CommonGNB {
                             drivingLicenseImageFront = bitmap;
                             drivingLicenseImageFront = PictureUtils.rotate(drivingLicenseImageFront, PictureUtils.exifOrientationToDegrees(captureUri));
                             setDrivingLicenseImage(drivingLicenseImageFront, true);
-
                         }
                     } else {
                         if (bitmap != null) {
